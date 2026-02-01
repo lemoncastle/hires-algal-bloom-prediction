@@ -9,6 +9,7 @@
 - ```/other``` Writeup/poster and etc..
 
 Links to raw data (UCSD personal OneDrive):
+- [IFCB_2022]() 630MB zipped / 1.9GB raw
 - [IFCB_2023](https://ucsdcloud-my.sharepoint.com/:u:/g/personal/ady005_ucsd_edu/IQDU5ICaVgteR6p-yTmGK5ZyAV6XU1SX7uJmfHw1TL4uduM?e=NNUJUo) 3.4GB zipped / 10.8GB raw
 - [IFCB_2024](https://ucsdcloud-my.sharepoint.com/:u:/g/personal/ady005_ucsd_edu/IQDocyNz6CAwTIjfQ7Km2OMKAUuFbsN1E14rkuqEvRW0irA?e=LexqwY) 17.6GB zipped / 56.2GB raw
 - [IFCB_2025](https://ucsdcloud-my.sharepoint.com/:u:/g/personal/ady005_ucsd_edu/IQBVWe3tqkhSR6woE53VSHQIAU3e1OL_qt1NLX22Xg_CuYc?e=3Vj1pC) 14.5GB zipped / 46GB raw
@@ -16,9 +17,9 @@ Links to raw data (UCSD personal OneDrive):
 
 ### Data Collection
 Data was collected from [Scripps Pier IFCB 183](https://ifcb.caloos.org/timeline?dataset=scripps-pier-ifcb-183)
-- Data spans March 2023 - January 2026, scraping took place Jan 5-26th
+- Data spans October 2022 - January 2026, scraping took place Jan 5-26th
 - Used laptop running Windows 11 LTSC
-    - Ungoogled chromium Version 137.0.7151.119 (Official Build, ungoogled-chromium) (64-bit)
+    - Ungoogled chromium Version 137.0.7151.119(64-bit)
         - Any modern browser works ([documentation](https://pypi.org/project/webdriver-manager/))
 
 Python 3.11.9

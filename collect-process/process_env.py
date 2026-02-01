@@ -2,7 +2,7 @@ from pathlib import Path
 import pandas as pd
 from functools import reduce
 
-base_path = Path("./data/tidesandcurrents/")
+base_path = Path("./env_data/tidesandcurrents/")
 
 dfs = []
 
@@ -67,7 +67,7 @@ water_level = all_data.groupby('date', as_index=False).mean()
 ### second part
 ###
 
-base_path = Path("./data/")
+base_path = Path("./env_data/")
 files = sorted(base_path.glob("*.csv"))
 
 dfs = []
@@ -79,7 +79,7 @@ for f in files:
     df = pd.read_csv(f, skiprows=[1])
 
     df["time"] = pd.to_datetime(df["time"], utc=True)
-    df = df[(df["time"] >= "2023-01-01") & (df["time"] < "2026-01-01") ]
+    df = df[(df["time"] >= "2022-10-01") & (df["time"] < "2026-01-01") ]
 
     value_col = [c for c in df.columns if c != "time" and not c.endswith("_qc_agg")][0]
     df = df[["time", value_col]]
@@ -101,3 +101,5 @@ env_df = pd.merge(env_df, water_level, on="date", how="left")
 
 env_df = env_df.sort_values("date").reset_index(drop=True)
 env_df.to_csv("./processed/environment_all.csv", index=False)
+
+print("Environment processing complete yay")
