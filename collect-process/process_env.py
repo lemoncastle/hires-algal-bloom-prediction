@@ -36,7 +36,7 @@ meteor = all_data.groupby('date', as_index=False).mean()
 
 # meteor.to_csv(out_path, index=False)
 
-files = ["waterlevel-day-23-24.csv", "waterlevel-day-24-25.csv", "waterlevel-day-25-26.csv" ]
+files = ["waterlevel-day-22-23.csv","waterlevel-day-23-24.csv", "waterlevel-day-24-25.csv", "waterlevel-day-25-26.csv" ]
 
 dfs.clear()
 
