@@ -29,22 +29,26 @@ base_url="https://ifcb.caloos.org"
 # end_url = "https://ifcb.caloos.org/bin?dataset=scripps-pier-ifcb-183&bin=D20240118T161914_IFCB183"
 
 # scrape 2024 - 2025 data
-start_url = "https://ifcb.caloos.org/bin?dataset=scripps-pier-ifcb-183&bin=D20240118T161914_IFCB183"
-end_url = "https://ifcb.caloos.org/bin?dataset=scripps-pier-ifcb-183&bin=D20250101T185049_IFCB183"
+# start_url = "https://ifcb.caloos.org/bin?dataset=scripps-pier-ifcb-183&bin=D20240118T161914_IFCB183"
+# end_url = "https://ifcb.caloos.org/bin?dataset=scripps-pier-ifcb-183&bin=D20250101T185049_IFCB183"
 
 # scrape 2025 - 2026 data
 # start_url = "https://ifcb.caloos.org/bin?dataset=scripps-pier-ifcb-183&bin=D20250101T185049_IFCB183"
 # end_url = "https://ifcb.caloos.org/bin?dataset=scripps-pier-ifcb-183&bin=D20260101T002031_IFCB183"
 
+# scrap 2021 - 2025 data from del mar mooring pier
+start_url = "https://ifcb.caloos.org/bin?dataset=del-mar-mooring&bin=D20210604T220216_IFCB158"
+end_url = "https://ifcb.caloos.org/bin?dataset=del-mar-mooring&bin=D20260101T001450_IFCB158"
+
 url = start_url
 
 date = url.split("bin=")[1].split("_")[0][1:9]
-month = url.split("bin=")[1].split("_")[0][5:7]
+month = url.split("bin=")[1].split("_")[0][1:7]
 new_month = month
 s = datetime.now()
 session = requests.Session()
 # create output directory for month (MUST DEFINE YEAR, minor bug sry) 
-out_dir = Path(f"./ifcb_downloads/2024{month}")
+out_dir = Path(f"./ifcb_downloads/{month}")
 out_dir.mkdir(parents=True, exist_ok=True)
 
 driver = webdriver.Chrome(service=ChromiumService(ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install()), options=options)
@@ -139,7 +143,7 @@ try:
 
             # update date, month, and url
             new_date = driver.current_url.split("bin=")[1].split("_")[0][1:9]
-            new_month= driver.current_url.split("bin=")[1].split("_")[0][5:7]
+            new_month= driver.current_url.split("bin=")[1].split("_")[0][1:7]
             if new_date != date: 
                 print(f"Downloaded day: {date} in {(datetime.now()- s).total_seconds()}s")
                 date = new_date
@@ -153,7 +157,7 @@ try:
         print(f"== Downloaded all data of month {month} in {(datetime.now()- s).total_seconds()}s")
         month=new_month
         # update for new month (MUST DEFINE YEAR, minor bug sry)
-        out_dir = Path(f"./ifcb_downloads/2024{month}")
+        out_dir = Path(f"./ifcb_downloads/{month}")
         out_dir.mkdir(parents=True, exist_ok=True)
 
 finally: # the interwebs says try/finally is good incase cat errors
