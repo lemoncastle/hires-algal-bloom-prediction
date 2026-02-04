@@ -20,13 +20,17 @@ options.add_argument('--headless=new')
 
 base_url="https://ifcb.caloos.org"
 
+# scrape 2022 - 2023 data
+# start_url = "https://ifcb.caloos.org/bin?dataset=scripps-pier-ifcb-183&bin=D20221005T001110_IFCB183"
+# end_url = "https://ifcb.caloos.org/bin?dataset=scripps-pier-ifcb-183&bin=D20230302T200944_IFCB183"
+
 # scrape 2023 - 2024 data
-start_url = "https://ifcb.caloos.org/bin?dataset=scripps-pier-ifcb-183&bin=D20230302T200944_IFCB183"
-end_url = "https://ifcb.caloos.org/bin?dataset=scripps-pier-ifcb-183&bin=D20240118T161914_IFCB183"
+# start_url = "https://ifcb.caloos.org/bin?dataset=scripps-pier-ifcb-183&bin=D20230302T200944_IFCB183"
+# end_url = "https://ifcb.caloos.org/bin?dataset=scripps-pier-ifcb-183&bin=D20240118T161914_IFCB183"
 
 # scrape 2024 - 2025 data
-# start_url = "https://ifcb.caloos.org/bin?dataset=scripps-pier-ifcb-183&bin=D20240118T161914_IFCB183"
-# end_url = "https://ifcb.caloos.org/bin?dataset=scripps-pier-ifcb-183&bin=D20250101T185049_IFCB183"
+start_url = "https://ifcb.caloos.org/bin?dataset=scripps-pier-ifcb-183&bin=D20240118T161914_IFCB183"
+end_url = "https://ifcb.caloos.org/bin?dataset=scripps-pier-ifcb-183&bin=D20250101T185049_IFCB183"
 
 # scrape 2025 - 2026 data
 # start_url = "https://ifcb.caloos.org/bin?dataset=scripps-pier-ifcb-183&bin=D20250101T185049_IFCB183"
@@ -40,7 +44,7 @@ new_month = month
 s = datetime.now()
 session = requests.Session()
 # create output directory for month (MUST DEFINE YEAR, minor bug sry) 
-out_dir = Path(f"./ifcb_downloads/2023{month}")
+out_dir = Path(f"./ifcb_downloads/2024{month}")
 out_dir.mkdir(parents=True, exist_ok=True)
 
 driver = webdriver.Chrome(service=ChromiumService(ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install()), options=options)
@@ -149,7 +153,7 @@ try:
         print(f"== Downloaded all data of month {month} in {(datetime.now()- s).total_seconds()}s")
         month=new_month
         # update for new month (MUST DEFINE YEAR, minor bug sry)
-        out_dir = Path(f"./ifcb_downloads/2023{month}")
+        out_dir = Path(f"./ifcb_downloads/2024{month}")
         out_dir.mkdir(parents=True, exist_ok=True)
 
 finally: # the interwebs says try/finally is good incase cat errors
