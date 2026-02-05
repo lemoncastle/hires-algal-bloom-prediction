@@ -19,6 +19,10 @@ def read_hdr(path: Path) -> dict:
 samples = []
 ml_samples = []
 
+taxa = 'Lingulodinium_polyedra'
+taxa2 = 'Prorocentrum_micans'
+out_file = out_dir / "processed_25.csv" # change file name for each year
+
 # iterate through each month directory
 for month_dir in sorted(burger.iterdir()):
     path = base_path + month_dir.name + "/"
@@ -46,7 +50,7 @@ for month_dir in sorted(burger.iterdir()):
                         print(f"Features file is empty for date {timestamp}")
                 else:
                     try:
-                        class_scores = pd.read_csv(Path(match), usecols=['pid', 'Lingulodinium_polyedra'])
+                        class_scores = pd.read_csv(Path(match), usecols=['pid', taxa, taxa2])
                     except pd.errors.EmptyDataError:
                         class_scores = None
                         print(f"Class scores file is empty for date {timestamp}")
@@ -56,12 +60,13 @@ for month_dir in sorted(burger.iterdir()):
         
         # if both files read, calculate expected values and append
         if isinstance(features, pd.DataFrame) and isinstance(class_scores, pd.DataFrame):
-            weights = class_scores["Lingulodinium_polyedra"]
+            weights = class_scores[taxa]
             weighted_means = (features.multiply(weights, axis=0).sum()/ weights.sum())
             sample_row = {
                 "date": date,
                 "roiCount": roi_count,
                 "Lpoly_expected": weights.sum(),
+                "Pmicans_expected": class_scores[taxa2].sum()
                 }
             for col, val in weighted_means.items():
                 sample_row[col] = val
@@ -75,16 +80,16 @@ ml_df_all = pd.concat(ml_samples).reset_index()
 daily = samples_df.groupby("date", as_index=False).mean().merge(ml_df_all, on="date", how="left")
 
 daily["Lpoly_expected_ml"] = daily["Lpoly_expected"] / daily["ml_analyzed"]
+daily["Pmicans_expected_ml"] = daily["Pmicans_expected"] / daily["ml_analyzed"]
 daily["ROI_per_ml"] = daily["roiCount"] / daily["ml_analyzed"]
 
 # reorder columns to have important ones first
-important = ["date", "roiCount", "ml_analyzed", "ROI_per_ml", "Lpoly_expected", "Lpoly_expected_ml"]
+important = ["date", "roiCount", "ml_analyzed", "ROI_per_ml", "Lpoly_expected", "Lpoly_expected_ml", "Pmicans_expected", "Pmicans_expected_ml"]
 all_cols = daily.columns.tolist()
 other_cols = [c for c in all_cols if c not in important]
 new_order = important + other_cols
 daily = daily[new_order]
 daily.head()
 
-out_file = out_dir / "processed.csv"
 daily.to_csv(out_file, index=False)
 print(f"Processing complete in {(datetime.now()- s).total_seconds()}s yay")
