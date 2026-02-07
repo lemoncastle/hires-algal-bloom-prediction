@@ -56,15 +56,15 @@ driver.get(url)
 
 ml_data = []
 
-# wait up to 15 seconds, poll every 1 seconds
-wait = WebDriverWait(driver, timeout=15, poll_frequency=1)
+# wait up to 20 seconds, poll every 1 seconds
+wait = WebDriverWait(driver, timeout=20, poll_frequency=1)
 def href_not_hash(driver): # wait until the href of download links are updated (not '#')
             el = driver.find_element(By.ID, "download-hdr")
             href = el.get_attribute("href")
             return "hdr" in href
 
 # wait with retry function for selenium timeouts (loading javascript)
-def wait_with_retry(wait1, driver, retry_delay=120):
+def wait_with_retry(wait1, driver, retry_delay=180):
     try:
         wait1()
         return True
@@ -81,7 +81,7 @@ def wait_with_retry(wait1, driver, retry_delay=120):
             return False
 
 # for download requests
-def download_with_retry(session, url, out_path, retries=1, delay=120):
+def download_with_retry(session, url, out_path, retries=1, delay=180):
     for attempt in range(retries + 1):
         try:
             with session.get(url, stream=True, timeout=30) as r:
@@ -112,8 +112,10 @@ try:
             soup = BeautifulSoup(driver.page_source, 'html.parser')
             
             tag = soup.find("span", id="stat-ml-analyzed")
+            tag2 = soup.find("span", id="stat-concentration")
             ml_value = float(tag.get_text(strip=True).split()[0]) if tag else None
-            ml_data.append({"date": date, "ml_analyzed": ml_value})
+            concentration_value = float(tag2.get_text(strip=True).split()[0]) if tag2 else None
+            ml_data.append({"date": date, "ml_analyzed": ml_value, "ROI/ml": concentration_value})
             
             for file_id in ["download-hdr","download-features","download-class-scores"]:
                 tag = soup.find("a", id=file_id)
@@ -123,7 +125,7 @@ try:
                 out_path = out_dir / filename
                 if out_path.exists(): continue
                 
-                success = download_with_retry(session, file_url, out_path, retries=2, delay=120)
+                success = download_with_retry(session, file_url, out_path, retries=2, delay=180)
                 if not success:
                     print(f"Failed to download {file_url} after retries. Exiting.")
                     driver.quit()
