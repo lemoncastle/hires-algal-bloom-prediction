@@ -29,22 +29,26 @@ base_url="https://ifcb.caloos.org"
 # end_url = "https://ifcb.caloos.org/bin?dataset=scripps-pier-ifcb-183&bin=D20240118T161914_IFCB183"
 
 # scrape 2024 - 2025 data
-start_url = "https://ifcb.caloos.org/bin?dataset=scripps-pier-ifcb-183&bin=D20240118T161914_IFCB183"
-end_url = "https://ifcb.caloos.org/bin?dataset=scripps-pier-ifcb-183&bin=D20250101T185049_IFCB183"
+# start_url = "https://ifcb.caloos.org/bin?dataset=scripps-pier-ifcb-183&bin=D20240118T161914_IFCB183"
+# end_url = "https://ifcb.caloos.org/bin?dataset=scripps-pier-ifcb-183&bin=D20250101T185049_IFCB183"
 
 # scrape 2025 - 2026 data
 # start_url = "https://ifcb.caloos.org/bin?dataset=scripps-pier-ifcb-183&bin=D20250101T185049_IFCB183"
 # end_url = "https://ifcb.caloos.org/bin?dataset=scripps-pier-ifcb-183&bin=D20260101T002031_IFCB183"
 
+# scrap 2021 - 2025 data from del mar mooring pier
+start_url = "https://ifcb.caloos.org/bin?dataset=del-mar-mooring&bin=D20210604T220216_IFCB158"
+end_url = "https://ifcb.caloos.org/bin?dataset=del-mar-mooring&bin=D20260101T001450_IFCB158"
+
 url = start_url
 
 date = url.split("bin=")[1].split("_")[0][1:9]
-month = url.split("bin=")[1].split("_")[0][5:7]
+month = url.split("bin=")[1].split("_")[0][1:7]
 new_month = month
 s = datetime.now()
 session = requests.Session()
 # create output directory for month (MUST DEFINE YEAR, minor bug sry) 
-out_dir = Path(f"./ifcb_downloads/2024{month}")
+out_dir = Path(f"./ifcb_downloads/{month}")
 out_dir.mkdir(parents=True, exist_ok=True)
 
 driver = webdriver.Chrome(service=ChromiumService(ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install()), options=options)
@@ -52,15 +56,15 @@ driver.get(url)
 
 ml_data = []
 
-# wait up to 15 seconds, poll every 1 seconds
-wait = WebDriverWait(driver, timeout=15, poll_frequency=1)
+# wait up to 20 seconds, poll every 1 seconds
+wait = WebDriverWait(driver, timeout=20, poll_frequency=1)
 def href_not_hash(driver): # wait until the href of download links are updated (not '#')
             el = driver.find_element(By.ID, "download-hdr")
             href = el.get_attribute("href")
             return "hdr" in href
 
 # wait with retry function for selenium timeouts (loading javascript)
-def wait_with_retry(wait1, driver, retry_delay=120):
+def wait_with_retry(wait1, driver, retry_delay=180):
     try:
         wait1()
         return True
@@ -77,7 +81,7 @@ def wait_with_retry(wait1, driver, retry_delay=120):
             return False
 
 # for download requests
-def download_with_retry(session, url, out_path, retries=1, delay=120):
+def download_with_retry(session, url, out_path, retries=1, delay=180):
     for attempt in range(retries + 1):
         try:
             with session.get(url, stream=True, timeout=30) as r:
@@ -108,8 +112,10 @@ try:
             soup = BeautifulSoup(driver.page_source, 'html.parser')
             
             tag = soup.find("span", id="stat-ml-analyzed")
+            tag2 = soup.find("span", id="stat-concentration")
             ml_value = float(tag.get_text(strip=True).split()[0]) if tag else None
-            ml_data.append({"date": date, "ml_analyzed": ml_value})
+            concentration_value = float(tag2.get_text(strip=True).split()[0]) if tag2 else None
+            ml_data.append({"date": date, "ml_analyzed": ml_value, "ROI/ml": concentration_value})
             
             for file_id in ["download-hdr","download-features","download-class-scores"]:
                 tag = soup.find("a", id=file_id)
@@ -119,7 +125,7 @@ try:
                 out_path = out_dir / filename
                 if out_path.exists(): continue
                 
-                success = download_with_retry(session, file_url, out_path, retries=2, delay=120)
+                success = download_with_retry(session, file_url, out_path, retries=2, delay=180)
                 if not success:
                     print(f"Failed to download {file_url} after retries. Exiting.")
                     driver.quit()
@@ -139,7 +145,7 @@ try:
 
             # update date, month, and url
             new_date = driver.current_url.split("bin=")[1].split("_")[0][1:9]
-            new_month= driver.current_url.split("bin=")[1].split("_")[0][5:7]
+            new_month= driver.current_url.split("bin=")[1].split("_")[0][1:7]
             if new_date != date: 
                 print(f"Downloaded day: {date} in {(datetime.now()- s).total_seconds()}s")
                 date = new_date
@@ -153,7 +159,7 @@ try:
         print(f"== Downloaded all data of month {month} in {(datetime.now()- s).total_seconds()}s")
         month=new_month
         # update for new month (MUST DEFINE YEAR, minor bug sry)
-        out_dir = Path(f"./ifcb_downloads/2024{month}")
+        out_dir = Path(f"./ifcb_downloads/{month}")
         out_dir.mkdir(parents=True, exist_ok=True)
 
 finally: # the interwebs says try/finally is good incase cat errors
