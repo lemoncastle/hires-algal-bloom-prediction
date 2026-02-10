@@ -5,6 +5,9 @@ import glob
 import os
 s = datetime.now()
 
+# todo empty files idk
+# for loop to combine all date into one df and save to csv (I'm lazy)
+
 base_path = "./ifcb_downloads/"
 burger = Path(base_path) # used for iterating months I'm kinda hungry
 out_dir = Path("./processed/")
@@ -51,11 +54,10 @@ for month_dir in sorted(burger.iterdir()):
             elif match.endswith('hdr'):
                 hdr = read_hdr(Path(match))
                 roi_count = float(hdr["roiCount"])
-                
                 # https://github.com/hsosik/ifcb-analysis/blob/master/IFCB_tools/IFCB_volume_analyzed.m
                 # derive ml analyzed from run time and inhibit time, convert to minutes and apply 0.25 ml/min flow rate
-                runTime = hdr["runTime"]
-                inhibitTime = hdr["inhibitTime"]
+                runTime = float(hdr["runTime"])
+                inhibitTime = float(hdr["inhibitTime"])
                 ml_analyzed = float((0.25*(runTime-inhibitTime))/60)
 
         # if both files read, calculate expected values and append
@@ -76,17 +78,10 @@ for month_dir in sorted(burger.iterdir()):
                 sample_row[col] = val
             samples.append(sample_row)
 
-# make dataframes, merge and calculate Lpoly per ml
+# make dataframes and groupby date, then save to csv
 samples_df = pd.DataFrame(samples)
 samples_df["date"] = samples_df["date"].astype("int64")
 daily = samples_df.groupby("date", as_index=False).mean()
-
-# reorder columns to have important ones first
-# important = ["date", "roiCount", "ml_analyzed", "ROI_per_ml", "Lpoly_expected", "Lpoly_expected_ml", "Pmicans_expected", "Pmicans_expected_ml"]
-# all_cols = daily.columns.tolist()
-# other_cols = [c for c in all_cols if c not in important]
-# new_order = important + other_cols
-# daily = daily[new_order]
 
 daily.to_csv(out_file, index=False)
 print(f"Processing complete in {(datetime.now()- s).total_seconds()}s yay")
