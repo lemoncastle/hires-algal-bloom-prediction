@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>L. Poly Bloom – Animated Bubble Chart</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: "Segoe UI", sans-serif;
+      background: #0d1117;
+      color: #e6edf3;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 24px;
+    }
+
+    h1 { font-size: 1.3rem; margin-bottom: 4px; letter-spacing: 0.5px; }
+    .subtitle { font-size: 0.82rem; color: #8b949e; margin-bottom: 20px; }
+
+    #chart-container { position: relative; }
+
+    /* Axes */
+    .axis path, .axis line { stroke: #30363d; }
+    .axis text { fill: #8b949e; font-size: 11px; }
+    .axis-label { fill: #8b949e; font-size: 12px; }
+    .grid line { stroke: #21262d; stroke-dasharray: 3,3; }
+    .grid path { stroke: none; }
+
+    /* Bubbles */
+    .bubble {
+      stroke: rgba(255,255,255,0.15);
+      stroke-width: 1;
+      transition: opacity 0.2s;
+    }
+    .bubble:hover { stroke: white; stroke-width: 1.5; opacity: 1 !important; }
+
+    /* Tooltip */
+    #tooltip {
+      position: absolute;
+      pointer-events: none;
+      background: #161b22;
+      border: 1px solid #30363d;
+      border-radius: 6px;
+      padding: 10px 14px;
+      font-size: 12px;
+      line-height: 1.7;
+      opacity: 0;
+      transition: opacity 0.15s;
+      max-width: 220px;
+    }
+    #tooltip .date { font-weight: 600; color: #58a6ff; margin-bottom: 4px; }
+    #tooltip .bloom { font-size: 1.1em; font-weight: 700; }
+    #tooltip .bloom.high { color: #f85149; }
+    #tooltip .bloom.med  { color: #e3b341; }
+    #tooltip .bloom.low  { color: #3fb950; }
+
+    /* Controls */
+    #controls {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-top: 16px;
+      width: 100%;
+      max-width: 860px;
+    }
+    #play-btn {
+      background: #238636;
+      border: none;
+      color: white;
+      border-radius: 6px;
+      padding: 6px 16px;
+      font-size: 13px;
+      cursor: pointer;
+      min-width: 64px;
+    }
+    #play-btn:hover { background: #2ea043; }
+    #date-slider {
+      flex: 1;
+      accent-color: #58a6ff;
+      cursor: pointer;
+    }
+    #date-label {
+      font-size: 13px;
+      color: #58a6ff;
+      min-width: 90px;
+      text-align: right;
+      font-variant-numeric: tabular-nums;
+    }
+    #speed-label { font-size: 12px; color: #8b949e; white-space: nowrap; }
+    #speed-select {
+      background: #21262d;
+      border: 1px solid #30363d;
+      color: #e6edf3;
+      border-radius: 4px;
+      padding: 3px 6px;
+      font-size: 12px;
+      cursor: pointer;
+    }
+
+    /* Legend */
+    #legend {
+      display: flex;
+      gap: 24px;
+      margin-top: 14px;
+      font-size: 11px;
+      color: #8b949e;
+      align-items: flex-start;
+    }
+    .legend-section { display: flex; flex-direction: column; gap: 4px; }
+    .legend-title { color: #e6edf3; font-weight: 600; margin-bottom: 2px; }
+    .legend-row { display: flex; align-items: center; gap: 6px; }
+    .legend-swatch {
+      width: 12px; height: 12px; border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.2);
+    }
+    .legend-size-row { display: flex; align-items: flex-end; gap: 8px; }
+    .legend-bubble {
+      background: rgba(255,255,255,0.25);
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.3);
+    }
+  </style>
+</head>
+<body>
+
+<h1>Lingulodinium polyedra — Bloom Conditions</h1>
+<p class="subtitle">
+  Each bubble is one day &nbsp;|&nbsp;
+  X = Sea temp &nbsp;|&nbsp; Y = pH &nbsp;|&nbsp;
+  Size = Bloom (mL) &nbsp;|&nbsp; Color = Chlorophyll (µg/L)
+</p>
+
+<div id="chart-container">
+  <div id="tooltip"></div>
+</div>
+
+<div id="controls">
+  <button id="play-btn">▶ Play</button>
+  <input type="range" id="date-slider" min="0" step="1" value="0" />
+  <span id="date-label">–</span>
+  <span id="speed-label">Speed:</span>
+  <select id="speed-select">
+    <option value="400">Slow</option>
+    <option value="150" selected>Normal</option>
+    <option value="60">Fast</option>
+    <option value="20">Turbo</option>
+  </select>
+</div>
+
+<div id="legend">
+  <div class="legend-section">
+    <span class="legend-title">Chlorophyll (µg/L)</span>
+    <div class="legend-row"><div class="legend-swatch" style="background:#c7e9c0"></div> Low (&lt; 10)</div>
+    <div class="legend-row"><div class="legend-swatch" style="background:#41ab5d"></div> Medium (10–40)</div>
+    <div class="legend-row"><div class="legend-swatch" style="background:#005a32"></div> High (&gt; 40)</div>
+  </div>
+  <div class="legend-section">
+    <span class="legend-title">Bloom volume (mL)</span>
+    <div class="legend-size-row">
+      <div style="display:flex;flex-direction:column;align-items:center;gap:2px">
+        <div class="legend-bubble" style="width:8px;height:8px"></div><span>~1</span>
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:2px">
+        <div class="legend-bubble" style="width:16px;height:16px"></div><span>~20</span>
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:2px">
+        <div class="legend-bubble" style="width:30px;height:30px"></div><span>~80</span>
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:2px">
+        <div class="legend-bubble" style="width:44px;height:44px"></div><span>~172</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Load D3 from node_modules (adjust path if serving differently) -->
+<script src="../node_modules/d3/dist/d3.min.js"></script>
+<script>
+const CSV_PATH = "../data/environment_LPoly.csv";
+
+const WIDTH  = 820;
+const HEIGHT = 480;
+const MARGIN = { top: 20, right: 30, bottom: 55, left: 60 };
+
+const INNER_W = WIDTH  - MARGIN.left - MARGIN.right;
+const INNER_H = HEIGHT - MARGIN.top  - MARGIN.bottom;
+
+// Trail: how many past days to keep as faded ghost bubbles
+const TRAIL_LENGTH = 14;
+
+// ── SVG setup ────────────────────────────────────────────────────────────────
+const svg = d3.select("#chart-container")
+  .append("svg")
+  .attr("width",  WIDTH)
+  .attr("height", HEIGHT);
+
+const g = svg.append("g")
+  .attr("transform", `translate(${MARGIN.left},${MARGIN.top})`);
+
+// ── Scales (defined after data loads) ────────────────────────────────────────
+let xScale, yScale, rScale, colorScale;
+
+// ── Load & clean data ─────────────────────────────────────────────────────────
+d3.csv(CSV_PATH, row => {
+  const temp = +row["sea_water_temperature_ctd"];
+  const ph   = +row["sea_water_ph_reported_on_total_scale_seaphox_external"];
+  const ml   = +row["Lpoly_expected_ml"];
+  const chl  = +row["mass_concentration_of_chlorophyll_in_sea_water_ctd"];
+  const dateStr = row["date"]; // YYYYMMDD
+
+  // Filter out obviously bad pH sensor readings (valid seawater pH ≈ 7.8–8.5)
+  if (!temp || !dateStr || ph < 7.5 || ph > 8.9) return null;
+
+  const y = +dateStr.slice(0, 4);
+  const m = +dateStr.slice(4, 6) - 1;
+  const d = +dateStr.slice(6, 8);
+
+  return {
+    date: new Date(y, m, d),
+    dateStr,
+    temp,
+    ph,
+    ml:  isNaN(ml)  ? 0 : Math.max(0, ml),
+    chl: isNaN(chl) ? 0 : Math.max(0, chl),
+  };
+}).then(rawData => {
+
+  const data = rawData.filter(Boolean).sort((a, b) => a.date - b.date);
+
+  // ── Scales ──────────────────────────────────────────────────────────────────
+  xScale = d3.scaleLinear()
+    .domain(d3.extent(data, d => d.temp)).nice()
+    .range([0, INNER_W]);
+
+  yScale = d3.scaleLinear()
+    .domain(d3.extent(data, d => d.ph)).nice()
+    .range([INNER_H, 0]);
+
+  rScale = d3.scaleSqrt()
+    .domain([0, d3.max(data, d => d.ml)])
+    .range([3, 28]);
+
+  colorScale = d3.scaleSequential()
+    .domain([0, d3.max(data, d => d.chl)])
+    .interpolator(d3.interpolateGreens);
+
+  // ── Grid lines ───────────────────────────────────────────────────────────────
+  g.append("g").attr("class", "grid")
+    .attr("transform", `translate(0,${INNER_H})`)
+    .call(d3.axisBottom(xScale).ticks(8).tickSize(-INNER_H).tickFormat(""));
+
+  g.append("g").attr("class", "grid")
+    .call(d3.axisLeft(yScale).ticks(6).tickSize(-INNER_W).tickFormat(""));
+
+  // ── Axes ────────────────────────────────────────────────────────────────────
+  g.append("g").attr("class", "axis")
+    .attr("transform", `translate(0,${INNER_H})`)
+    .call(d3.axisBottom(xScale).ticks(8).tickFormat(d => `${d}°C`));
+
+  g.append("g").attr("class", "axis")
+    .call(d3.axisLeft(yScale).ticks(6));
+
+  // Axis labels
+  g.append("text").attr("class", "axis-label")
+    .attr("x", INNER_W / 2).attr("y", INNER_H + 44)
+    .attr("text-anchor", "middle")
+    .text("Sea Water Temperature (°C)");
+
+  g.append("text").attr("class", "axis-label")
+    .attr("transform", "rotate(-90)")
+    .attr("x", -INNER_H / 2).attr("y", -46)
+    .attr("text-anchor", "middle")
+    .text("Sea Water pH");
+
+  // ── Bloom zone annotation ────────────────────────────────────────────────────
+  // Shade temp range commonly associated with red tide (approx 17–22°C)
+  g.append("rect")
+    .attr("x", xScale(17)).attr("y", 0)
+    .attr("width", xScale(22) - xScale(17))
+    .attr("height", INNER_H)
+    .attr("fill", "rgba(248, 81, 73, 0.05)")
+    .attr("pointer-events", "none");
+
+  g.append("text")
+    .attr("x", xScale(19.5)).attr("y", 12)
+    .attr("text-anchor", "middle")
+    .attr("fill", "rgba(248,81,73,0.5)")
+    .attr("font-size", "10px")
+    .text("Typical bloom temp range");
+
+  // ── Bubble layer ─────────────────────────────────────────────────────────────
+  const bubblesG = g.append("g").attr("class", "bubbles");
+
+  // ── Tooltip ──────────────────────────────────────────────────────────────────
+  const tooltip = d3.select("#tooltip");
+
+  function showTip(event, d) {
+    const bloomClass = d.ml > 20 ? "high" : d.ml > 5 ? "med" : "low";
+    tooltip
+      .style("opacity", 1)
+      .html(`
+        <div class="date">${d.date.toLocaleDateString("en-US", {year:"numeric",month:"short",day:"numeric"})}</div>
+        <div class="bloom ${bloomClass}">Bloom: ${d.ml.toFixed(2)} mL</div>
+        Temp: ${d.temp.toFixed(2)}°C<br>
+        pH: ${d.ph.toFixed(3)}<br>
+        Chlorophyll: ${d.chl.toFixed(2)} µg/L
+      `);
+    moveTip(event);
+  }
+
+  function moveTip(event) {
+    const [mx, my] = d3.pointer(event, document.getElementById("chart-container"));
+    tooltip
+      .style("left", `${mx + 14}px`)
+      .style("top",  `${my - 10}px`);
+  }
+
+  // ── Animation state ──────────────────────────────────────────────────────────
+  let currentIdx = 0;
+  let playing = false;
+  let timer = null;
+
+  const slider    = document.getElementById("date-slider");
+  const dateLabel = document.getElementById("date-label");
+  const playBtn   = document.getElementById("play-btn");
+  const speedSel  = document.getElementById("speed-select");
+
+  slider.max = data.length - 1;
+
+  function renderFrame(idx) {
+    const trailStart = Math.max(0, idx - TRAIL_LENGTH + 1);
+    const visible = data.slice(trailStart, idx + 1);
+
+    const circles = bubblesG.selectAll("circle.bubble")
+      .data(visible, d => d.dateStr);
+
+    // Enter
+    circles.enter()
+      .append("circle")
+      .attr("class", "bubble")
+      .attr("cx", d => xScale(d.temp))
+      .attr("cy", d => yScale(d.ph))
+      .attr("r",  0)
+      .merge(circles) // Enter + Update
+      .attr("cx", d => xScale(d.temp))
+      .attr("cy", d => yScale(d.ph))
+      .attr("fill",   d => colorScale(d.chl))
+      .attr("opacity", (d, i) => {
+        // Newest bubble fully opaque, trail fades
+        const age = visible.length - 1 - i;
+        return age === 0 ? 0.92 : Math.max(0.08, 0.5 - age * (0.5 / TRAIL_LENGTH));
+      })
+      .transition().duration(100)
+      .attr("r", d => rScale(d.ml));
+
+    // Exit (too old)
+    circles.exit()
+      .transition().duration(200)
+      .attr("r", 0)
+      .remove();
+
+    // Tooltip handlers — only on current bubble
+    bubblesG.selectAll("circle.bubble")
+      .on("mouseover", showTip)
+      .on("mousemove", moveTip)
+      .on("mouseleave", () => tooltip.style("opacity", 0));
+
+    // Update UI
+    const d = data[idx];
+    dateLabel.textContent = d.date.toLocaleDateString("en-US", {
+      year: "numeric", month: "short", day: "numeric"
+    });
+    slider.value = idx;
+  }
+
+  function step() {
+    if (currentIdx >= data.length - 1) {
+      stopPlay();
+      return;
+    }
+    currentIdx++;
+    renderFrame(currentIdx);
+  }
+
+  function startPlay() {
+    playing = true;
+    playBtn.textContent = "⏸ Pause";
+    const delay = +speedSel.value;
+    timer = setInterval(step, delay);
+  }
+
+  function stopPlay() {
+    playing = false;
+    playBtn.textContent = "▶ Play";
+    clearInterval(timer);
+    timer = null;
+  }
+
+  playBtn.addEventListener("click", () => {
+    if (playing) { stopPlay(); }
+    else {
+      if (currentIdx >= data.length - 1) currentIdx = 0;
+      startPlay();
+    }
+  });
+
+  slider.addEventListener("input", () => {
+    stopPlay();
+    currentIdx = +slider.value;
+    renderFrame(currentIdx);
+  });
+
+  speedSel.addEventListener("change", () => {
+    if (playing) { stopPlay(); startPlay(); }
+  });
+
+  // Draw initial frame
+  renderFrame(0);
+});
+</script>
+</body>
+</html>
