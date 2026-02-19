@@ -222,20 +222,8 @@
     </div>
     <div class="legend-section">
       <span class="legend-title">Bloom volume (mL)</span>
-      <div class="legend-size-row">
-        <div style="display:flex;flex-direction:column;align-items:center;gap:2px">
-          <div class="legend-bubble" style="width:8px;height:8px"></div><span>~1</span>
-        </div>
-        <div style="display:flex;flex-direction:column;align-items:center;gap:2px">
-          <div class="legend-bubble" style="width:16px;height:16px"></div><span>~20</span>
-        </div>
-        <div style="display:flex;flex-direction:column;align-items:center;gap:2px">
-          <div class="legend-bubble" style="width:30px;height:30px"></div><span>~80</span>
-        </div>
-        <div style="display:flex;flex-direction:column;align-items:center;gap:2px">
-          <div class="legend-bubble" style="width:44px;height:44px"></div><span>~172</span>
-        </div>
-      </div>
+      <div style="font-size:10px;color:#bbb;font-style:italic;margin-bottom:4px;">expected mL of <em>L. poly</em> per liter of seawater</div>
+      <div class="legend-size-row" id="legend-size-row"></div>
     </div>
   </div>
 
@@ -350,9 +338,20 @@ d3.csv(CSV_PATH, row => {
     .domain(d3.extent(data, d => d.ph)).nice()
     .range([INNER_H, 0]);
 
+  const maxMl = d3.max(data, d => d.ml);
   rScale = d3.scaleSqrt()
-    .domain([0, d3.max(data, d => d.ml)])
+    .domain([0, maxMl])
     .range([3, 28]);
+
+  // ── Size legend (built from actual data range) ────────────────────────────
+  // Fixed meaningful values; rScale gives the exact pixel radius used in the chart
+  const legendVals = [1, 10, 25, 50, Math.round(maxMl)];
+  document.getElementById("legend-size-row").innerHTML = legendVals.map(v => {
+    const d = rScale(v) * 2;
+    return `<div style="display:flex;flex-direction:column;align-items:center;gap:2px">
+      <div class="legend-bubble" style="width:${d}px;height:${d}px"></div>
+      <span>~${v}</span></div>`;
+  }).join("");
 
   colorScale = d3.scaleSequential()
     .domain([0, d3.max(data, d => d.chl)])
