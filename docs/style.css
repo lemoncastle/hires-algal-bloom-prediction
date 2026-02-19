@@ -31,6 +31,7 @@ header .container { display: flex; justify-content: space-between; align-items: 
 .prod-name { color: var(--text); font-size: 1.3rem; font-weight: 400; text-decoration: none; }
 .prod-name:hover {text-decoration: underline;}
 nav a { color: var(--text);margin-left: 1rem; color: var(--muted); text-decoration: none; }
+nav a:first-child { margin-left: 0; }
 nav a:hover{ color: var(--accent); text-decoration: underline;}
 nav a.active:hover { text-decoration: underline; }
 nav a.active { color: var(--accent); text-decoration: none; }
