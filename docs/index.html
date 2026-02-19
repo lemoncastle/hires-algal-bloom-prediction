@@ -6,6 +6,56 @@
     <title>Home</title>
     <link rel="stylesheet" href="style.css" />
     <link rel="icon" href="./images/smile-16x16.png" type="image/png">
+    <style>
+      .callout {
+        border-left: 3px solid var(--accent);
+        background: rgba(152, 115, 172, 0.06);
+        padding: 0.8rem 1.2rem;
+        border-radius: 0 6px 6px 0;
+        margin: 1.2rem 0;
+        color: var(--text);
+      }
+      .callout strong { color: var(--accent2); }
+
+      .stat-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0.8rem;
+        margin: 1.2rem 0 1.8rem 0;
+      }
+      .stat-card {
+        border: 1px solid var(--border);
+        border-radius: 6px;
+        padding: 0.8rem 1rem;
+        background: #fff;
+        text-align: center;
+      }
+      .stat-card .sc-value {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--accent2);
+        line-height: 1.1;
+      }
+      .stat-card .sc-label {
+        font-size: 0.78rem;
+        color: var(--muted);
+        margin-top: 3px;
+      }
+
+      .viz-cta {
+        text-align: center;
+        margin: 2.5rem 0 1rem 0;
+        padding: 2rem;
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        background: rgba(152, 115, 172, 0.04);
+      }
+      .viz-cta p {
+        color: var(--muted);
+        font-size: 0.95rem;
+        margin-bottom: 1rem;
+      }
+    </style>
 </head>
 
 <body>
@@ -25,6 +75,7 @@
 <main class="container">
     <section class="prod">
         <p class="title">Climate Modeling and Machine Learning</p>
+        <p class="prod1">Exploring Harmful Algal Blooms Through Data Science</p>
         <div class="buttons">
             <a href="lpoly_story.html" class="btn1">Data Visualization</a>
             <a href="https://dsc-capstone.org/" target="_blank" class="btn2">Github/Code</a>
@@ -34,56 +85,46 @@
     </section>
 
     <section class="content">
-        
-        <p style="font-weight: bold;">Lorem Ipsum</p>
 
         <p class="content-title">Motivation</p>
 
-        <p>Algae are organisms that live in aquatic environments and produce their own nutrition
-through photosynthesis. While these organisms are typically benign (not harmful), there
-has been an increase in harmful algal blooms (HAB) which can produce harmful toxins due
-largely to human activities such increased carbon dioxide emissions driving climate change.
-For example, due to the Earth’s warming water temperature, increased precipitation, and
-abundance of nutrients, bacteria are able to thrive and proliferate at rates much faster than
-normal.</p>
-        <p>In addition, algae absorb sunlight and heat from the aquatic environment, blocking other
-vegetation from nutrients, leading to a positive feedback loop promoting more algae growth
-leading to the increase in potential harmful algal blooms.Furthermore, the varying rainfall
-patterns due to climate change lead to increased rainfall, causing more fertilizer runoffs,
-which increase nutrients in their habitats, leading to overgrowth of algae. Finally, the increase in CO2 simulates the growth rates of HABs and helps eliminate competing algae by
-further acidifying the aquatic ecosystem. The specific type of algae that is toxic is called
-Cyanobacteria. This bacteria then produces the toxin called cyanotoxins. Cyanotoxins
-cause extremely harmful interactions with humans when consumed, primarily resulting in
-conditions such as headaches, skin irritation, diarrhea, memory loss, and death.</p>
-        <p>Harmful algal blooms are an important problem because they can contaminate drinking
-water when filtration systems are inadequate, pose health risks to humans and animals,
-and damage freshwater and coastal ecosystems such as shellfish habitats. Addressing HABs
-can also be costly, requiring water sources to be closed disrupting local economies like
-fisheries and tourism. As anthropogenic climate change continues to warm water, affect
-precipitation and increase runoff, algal blooms are expected to become more frequent and
-more of a concern. This makes research into Algal bloom prediction interesting but also
-urgent as this issue grows further.</p>
-        
+        <p>Southern California's coastline experiences recurring Harmful Algal Blooms (HABs) driven by the dinoflagellate <em>Lingulodinium polyedra</em> (L. poly). During bloom events, dense concentrations of this bioluminescent organism turn the surf a deep rust-red by day and emit an electric-blue glow at night as waves disturb the water. While visually striking, these blooms signal a serious ecological imbalance: they can deplete dissolved oxygen, threaten marine food webs, and prompt closures of shellfish harvesting and recreational beaches along one of the country's most visited coastlines.</p>
+
+        <div class="callout">
+          <strong>Why it matters:</strong> HABs cost the United States an estimated $82 million per year in fisheries losses, public health costs, and tourism damage, and that number is rising as ocean conditions shift.
+        </div>
+
+        <p>HABs are becoming more frequent and more intense as anthropogenic climate change alters the ocean conditions that govern them. Warming sea surface temperatures expand the seasonal window in which L. poly thrives. Changes in upwelling patterns and increased agricultural runoff raise nutrient levels that fuel rapid cell division. Meanwhile, ocean acidification from elevated atmospheric CO₂ can shift phytoplankton community dynamics in ways that favor bloom-forming species.</p>
+
+        <p>Despite this urgency, bloom prediction today still relies heavily on costly, labor-intensive manual water sampling that provides only sparse, delayed observations. Continuous environmental sensors deployed at research piers offer a potentially transformative alternative: they record temperature, pH, salinity, dissolved oxygen, and chlorophyll in real time, every day. Our project asks whether this stream of sensor data, combined with machine learning, contains enough signal to reliably estimate L. poly bloom concentration, without waiting for a lab result. If so, it could form the foundation of a low-cost, near-real-time early warning system for coastal managers, fisheries operators, and the public.</p>
+
+        <div class="stat-grid">
+          <div class="stat-card">
+            <div class="sc-value">804</div>
+            <div class="sc-label">days of sensor data</div>
+          </div>
+          <div class="stat-card">
+            <div class="sc-value">2022–2025</div>
+            <div class="sc-label">data collection period</div>
+          </div>
+          <div class="stat-card">
+            <div class="sc-value">Scripps Pier</div>
+            <div class="sc-label">La Jolla, CA</div>
+          </div>
+        </div>
+
         <p class="content-title">Methods</p>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 
-        <div class="image-clickable">
-            <a href="https://x.com/phelix_kelvin/status/1980002009173668063" target="_blank">
-                <img src="./images/frieren.jpg" alt="Hatemonger cosplaying his favorite character on Halloween. Frieren!" />
-            </a>
-        </div>
-        
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-        
         <p class="content-title">Results</p>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-        
+
         <p class="content-title">Conclusion</p>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-        
+
     </section>
 
 </main>
