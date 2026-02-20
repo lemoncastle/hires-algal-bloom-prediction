@@ -406,10 +406,10 @@ d3.csv(CSV_PATH, row => {
 
   // ── Year badge ────────────────────────────────────────────────────────────────
   const yearBadge = g.append("text")
-    .attr("x", INNER_W - 8).attr("y", INNER_H - 12)
+    .attr("x", INNER_W).attr("y", INNER_H + 42)
     .attr("text-anchor", "end")
     .attr("font-size", 22).attr("font-weight", "400")
-    .attr("fill", "#b8b8b8")
+    .attr("fill", "#999")
     .attr("pointer-events", "none")
     .text("");
 
