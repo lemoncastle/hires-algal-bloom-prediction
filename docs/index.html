@@ -4,65 +4,17 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Home</title>
-    <link rel="stylesheet" href="style.css" />
-    <link rel="icon" href="./images/smile-16x16.png" type="image/png">
-    <style>
-      .callout {
-        border-left: 3px solid var(--accent);
-        background: rgba(152, 115, 172, 0.06);
-        padding: 0.8rem 1.2rem;
-        border-radius: 0 6px 6px 0;
-        margin: 1.2rem 0;
-        color: var(--text);
-      }
-      .callout strong { color: var(--accent2); }
-
-      .stat-grid {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 0.8rem;
-        margin: 1.2rem 0 1.8rem 0;
-      }
-      .stat-card {
-        border: 1px solid var(--border);
-        border-radius: 6px;
-        padding: 0.8rem 1rem;
-        background: #fff;
-        text-align: center;
-      }
-      .stat-card .sc-value {
-        font-size: 1.5rem;
-        font-weight: 700;
-        color: var(--accent2);
-        line-height: 1.1;
-      }
-      .stat-card .sc-label {
-        font-size: 0.78rem;
-        color: var(--muted);
-        margin-top: 3px;
-      }
-
-      .viz-cta {
-        text-align: center;
-        margin: 2.5rem 0 1rem 0;
-        padding: 2rem;
-        border: 1px solid var(--border);
-        border-radius: 8px;
-        background: rgba(152, 115, 172, 0.04);
-      }
-      .viz-cta p {
-        color: var(--muted);
-        font-size: 0.95rem;
-        margin-bottom: 1rem;
-      }
-    </style>
+    <link rel="stylesheet" href="./src/css/style.css" />
+    <link rel="icon" href="./src/imgs/smile-16x16.png" type="image/png">
 </head>
 
 <body>
 <header class="site-header">
     <div class="container">
+        <a href="index.html" class="prod-name">DSC180</a>
         <nav>
             <a href="index.html" class="active">Home</a>
+            <a href="lpoly_story.html">Visualization</a>
             <a href="about.html">About</a>
         </nav>
     </div>
@@ -78,7 +30,7 @@
             Climate Modeling and Machine Learning</p>
         <p class="prod1">Exploring Harmful Algal Blooms Through Data Science</p>
         <div class="buttons">
-            <a href="lpoly_story.html" class="btn1">Data Visualization</a>
+            <a href="lpoly_story.html" class="btn1">Visualization</a>
             <a href="https://dsc-capstone.org/" target="_blank" class="btn2">Github/Code</a>
             <a href="https://dsc-capstone.org/" target="_blank" class="btn2">Paper</a>
             <a href="https://dsc-capstone.org/" target="_blank" class="btn3">Poster</a>
@@ -135,6 +87,6 @@
     </div>
 </footer>
 
-<script src="script.js"></script>
+<script src="./src/js/script.js"></script>
 </body>
 </html>

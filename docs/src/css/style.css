@@ -85,8 +85,6 @@ p { margin-bottom: 1rem; }
 /* Footer style*/
 .site-footer { border-top: 1px solid var(--border); text-align: center; padding:.001rem; color: var(--muted); background: #fff; }
 
-
-
 /* .posts { margin-top: 2rem; }
 .post-item { margin-bottom: 2.5rem; }
 .post-item h2 { margin-bottom: 0.3rem; }
@@ -116,4 +114,77 @@ p { margin-bottom: 1rem; }
 
 #topButton:hover {
   background-color: var(--border); /* Add a dark-grey background on hover */
+}
+
+
+/* added styles */
+.callout {
+  border-left: 3px solid var(--accent);
+  background: rgba(152, 115, 172, 0.06);
+  padding: 0.8rem 1.2rem;
+  border-radius: 0 6px 6px 0;
+  margin: 1.2rem 0;
+  color: var(--text);
+}
+.callout strong { color: var(--accent2); }
+
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.8rem;
+  margin: 1.2rem 0 1.8rem 0;
+}
+.stat-card {
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 0.8rem 1rem;
+  background: #fff;
+  text-align: center;
+}
+.stat-card .sc-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--accent2);
+  line-height: 1.1;
+}
+.stat-card .sc-label {
+  font-size: 0.78rem;
+  color: var(--muted);
+  margin-top: 3px;
+}
+
+.viz-cta {
+  text-align: center;
+  margin: 2.5rem 0 1rem 0;
+  padding: 2rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: rgba(152, 115, 172, 0.04);
+}
+.viz-cta p {
+  color: var(--muted);
+  font-size: 0.95rem;
+  margin-bottom: 1rem;
+}
+.var-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.8rem;
+  margin: 1rem 0 1.5rem 0;
+}
+.var-card {
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 0.7rem 1rem;
+  background: #fff;
+}
+.var-card .var-name {
+  font-weight: 600;
+  color: var(--accent2);
+  font-size: 0.9rem;
+}
+.var-card .var-role {
+  font-size: 0.8rem;
+  color: var(--muted);
+  margin-top: 2px;
 }

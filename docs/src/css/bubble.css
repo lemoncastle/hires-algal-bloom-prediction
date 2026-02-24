@@ -1,0 +1,162 @@
+#chart-container { position: relative; margin: 0 auto; }
+
+/* Axes */
+.axis path, .axis line { stroke: #e5e5e5; }
+.axis text { fill: #666; font-size: 11px; }
+.axis-label { fill: #666; font-size: 12px; }
+.grid line { stroke: #e5e5e5; stroke-dasharray: 3,3; }
+.grid path { stroke: none; }
+
+/* Bubbles */
+.bubble {
+    stroke: rgba(0,0,0,0.35);
+    stroke-width: 1.2;
+    transition: opacity 0.2s;
+}
+.bubble:hover { stroke: #4B365F; stroke-width: 2; opacity: 1 !important; }
+
+/* Tooltip */
+#tooltip {
+    position: absolute;
+    pointer-events: none;
+    background: #fff;
+    border: 1px solid #e5e5e5;
+    border-radius: 6px;
+    padding: 10px 14px;
+    font-size: 12px;
+    line-height: 1.7;
+    opacity: 0;
+    transition: opacity 0.15s;
+    max-width: 220px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+#tooltip .tip-date { font-weight: 600; color: #9873AC; margin-bottom: 4px; }
+#tooltip .bloom { font-size: 1.1em; font-weight: 700; }
+#tooltip .bloom.high { color: #c0392b; }
+#tooltip .bloom.med  { color: #e67e22; }
+#tooltip .bloom.low  { color: #27ae60; }
+
+/* Controls */
+#controls {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-top: 16px;
+}
+#play-btn {
+    background: #9873AC;
+    border: none;
+    color: white;
+    border-radius: 75px;
+    padding: 6px 18px;
+    font-size: 13px;
+    cursor: pointer;
+    min-width: 80px;
+    font-family: inherit;
+    transition: background-color 0.3s ease;
+}
+#play-btn:hover { background: #4B365F; }
+#date-slider {
+    flex: 1;
+    accent-color: #9873AC;
+    cursor: pointer;
+}
+#date-label {
+    font-size: 13px;
+    color: #9873AC;
+    min-width: 100px;
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+}
+#speed-label { font-size: 12px; color: #666; white-space: nowrap; }
+#speed-select {
+    background: #fff;
+    border: 1px solid #e5e5e5;
+    color: #454545;
+    border-radius: 4px;
+    padding: 3px 6px;
+    font-size: 12px;
+    cursor: pointer;
+    font-family: inherit;
+}
+
+/* Legend */
+#legend {
+    display: flex;
+    gap: 32px;
+    margin-top: 16px;
+    font-size: 11px;
+    color: #666;
+    align-items: flex-start;
+}
+.legend-section { display: flex; flex-direction: column; gap: 4px; }
+.legend-title { color: #454545; font-weight: 600; margin-bottom: 2px; }
+.legend-row { display: flex; align-items: center; gap: 6px; }
+.legend-swatch {
+    width: 12px; height: 12px; border-radius: 50%;
+    border: 1px solid rgba(0,0,0,0.1);
+    flex-shrink: 0;
+}
+.legend-size-row { display: flex; align-items: flex-end; gap: 10px; }
+.legend-bubble {
+    background: rgba(152, 115, 172, 0.2);
+    border-radius: 50%;
+    border: 1px solid rgba(152, 115, 172, 0.4);
+}
+
+.viz-subtitle {
+    font-size: 0.85rem;
+    color: #aaa;
+    margin-bottom: 20px;
+}
+
+svg { display: block; }
+
+/* Timeline */
+#timeline-section { margin-top: 28px; }
+#timeline-label { font-weight: 600; color: #454545; margin-bottom: 3px; }
+#timeline-sublabel { color: #666; margin-bottom: 8px; }
+.event-rect { cursor: pointer; }
+.event-rect:hover { opacity: 1 !important; }
+#timeline-tip {
+    position: fixed;
+    pointer-events: none;
+    background: #fff;
+    border: 1px solid #e5e5e5;
+    border-radius: 6px;
+    padding: 8px 12px;
+    font-size: 12px;
+    line-height: 1.7;
+    opacity: 0;
+    transition: opacity 0.15s;
+    max-width: 200px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    z-index: 100;
+}
+#timeline-tip .tip-peak { font-weight: 700; color: #4B365F; }
+
+/* Chart card borders */
+#chart-container, #timeline-container {
+    border: 1px solid #e5e5e5;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+/* Stat bar */
+#bloom-stats {
+    display: flex;
+    gap: 28px;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+}
+.stat-item { display: flex; flex-direction: column; gap: 1px; }
+.stat-value { font-weight: 700; color: #4B365F; line-height: 1.1; }
+.stat-label { color: #999; }
+
+/* Missing data disclaimer */
+.data-disclaimer {
+    font-size: 11px;
+    color: #bbb;
+    font-style: italic;
+    margin-top: 8px;
+}
