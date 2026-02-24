@@ -47,6 +47,8 @@ requests==2.32.5
     - Any modern browser is compatible
     - See: https://pypi.org/project/webdriver-manager/
 
+A more efficient collection method using API in ```scrapewAPI.py```
+
 ### Environmental Data Sources
 [California Ocean Observing Systems Data Portal](https://data.caloos.org/#metadata/120738/station/data) at Scripps Pier
 - Collected using CTD and SeapHOx instrumentation:
@@ -77,4 +79,5 @@ Water Levels (m)
 - These data are manually collected and available at weekly to monthly resolution.
 
 ### Notes
-- 2/15/26 checkpoint
+- 2/15/26 checkpoint (report/repo)
+- 2/22/26 checkpoint (website/poster)
