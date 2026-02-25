@@ -78,6 +78,5 @@ Water Levels (m)
 - Provides additional phytoplankton-related observations at Scripps Pier dating back to 2019.
 - These data are manually collected and available at weekly to monthly resolution.
 
-### Notes
-- 2/15/26 checkpoint (report/repo)
-- 2/22/26 checkpoint (website/poster)
+### DATA VISUALIZATION LINK
+https://lemoncastle.github.io/DSC180B/lpoly_story.html
