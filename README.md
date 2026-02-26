@@ -1,9 +1,13 @@
-## CapstoneB
+## DSC180
 
-This repository contains data collection, processing, and modeling code for DSC capstone project analyzing Imaging FlowCytobot (IFCB) observations and environmental data at Scripps Pier. 
+This repository contains data collection, processing, and modeling scripts for a DSC capstone project analyzing Imaging FlowCytobot (IFCB) observations and environmental data at Scripps Pier and around Southern California. 
 
 Working title: Predicting Algal Blooms with High Resolution Imaging and Machine Learning
 
+- Github repo: [https://github.com/lemoncastle/DSC180B](https://github.com/lemoncastle/DSC180B)
+- Website: [https://lemoncastle.github.io/DSC180B/](https://lemoncastle.github.io/DSC180B/)
+- Report: [https://github.com/lemoncastle/DSC180B/blob/mochima/other/report_2-15.pdf](https://github.com/lemoncastle/DSC180B/blob/mochima/other/report_2-15.pdf)
+- Poster: [https://github.com/lemoncastle/DSC180B/blob/mochima/other/poster_2-22.pdf](https://github.com/lemoncastle/DSC180B/blob/mochima/other/poster_2-22.pdf)
 
 ### Repo Directory
 - ```/collect-process``` Scripts for data collection and processing
@@ -13,8 +17,35 @@ Working title: Predicting Algal Blooms with High Resolution Imaging and Machine 
 - ```/models``` Trained models and outputs
 - ```/other```  Write-ups, poster, and supplementary materials
 
-### Raw Data Availability
+## Getting Started
 
+This project was developed and tested on:
+- OS: Windows 11 LTSC
+- Python: 3.11.9
+
+Clone the Repository
+```
+git clone UPDATE THIS LINK
+```
+
+Install dependencies under ```requirements.txt```
+```
+pip install -r requirements.txt
+```
+Key dependencies include:
+```
+selenium
+webdriver-manager
+beautifulsoup4
+requests
+numpy
+pandas
+scikit-learn
+matplotlib / seaborn
+pyEDM
+```
+
+### Raw Data Availability
 Due to size constraints, raw data are hosted externally on UCSD OneDrive personal student account:
 #### IFCB 183 - Scripps Pier:
 - [IFCB183_2022](https://ucsdcloud-my.sharepoint.com/:u:/g/personal/ady005_ucsd_edu/IQD04nN3vEYVQJvnQ-UDF9G-AaKE8-MS5LIDIla0RRErd0A?e=3naPhH) 626MB zipped / 1.9GB raw
@@ -35,19 +66,13 @@ Due to size constraints, raw data are hosted externally on UCSD OneDrive persona
 - Data span: June 2021 – January 2026
 - Web scraping conducted: week of February 2
 
+Initial data collection was performed using scripted browser scraping.
+A more efficient API-based approach is implemented in:
 ```
-selenium==4.39.0
-webdriver-manager==4.0.2
-beautifulsoup4==4.14.2
-requests==2.32.5
+collect-process/scrapeAPI.py
 ```
-- OS: Windows 11 LTSC
-- Python: 3.11.9
 - Browser: Ungoogled Chromium 137.0.7151.119 (64-bit)
-    - Any modern browser is compatible
-    - See: https://pypi.org/project/webdriver-manager/
-
-A more efficient collection method using API in ```scrapewAPI.py```
+- Any modern Chromium-based browser is supported via ```webdriver-manager```
 
 ### Environmental Data Sources
 [California Ocean Observing Systems Data Portal](https://data.caloos.org/#metadata/120738/station/data) at Scripps Pier
@@ -78,5 +103,21 @@ Water Levels (m)
 - Provides additional phytoplankton-related observations at Scripps Pier dating back to 2019.
 - These data are manually collected and available at weekly to monthly resolution.
 
-### DATA VISUALIZATION LINK
-https://lemoncastle.github.io/DSC180B/lpoly_story.html
+## Running Scripts
+### Data Collection
+```
+collect-process/scrapewAPI.py
+```
+### Data Processing
+```
+collect-process/process_monthly.py
+collect-process/process_ifcb_158.py
+collect-process/process_env.py
+```
+### Models
+```
+models/simplex.ipynb
+models/mve.ipynb
+```
+
+Note: webscraping/data collection can take many hours
