@@ -3,15 +3,17 @@
   --text: #454545;
   --muted: #666;
   /* https://colorcodes.io/purple/lavender-purple-color-codes/ */
-  --accent: #9873AC;
-  --accent2: #4B365F;
+  /* teal or blue/green colors */
+  --accent: #2F8F9D ;
+  --accent2: #1F4E5F;
+  --cardbg: #2f8f9d0d; /* 0.05 opacity */
   --border: #e5e5e5;
   font-family: Open Sans, sans-serif;
 }
 
 a { color: #07a; } /* link color */
 ::selection { /* Highlight color using --accent + opacity*/
-  background: rgba(152, 115, 172, 0.25);
+  background: #2f8e9d47; /* 30% opacity ish?*/
 }
 
 /* removes all styling? idk chatgpt*/
@@ -64,14 +66,6 @@ nav a.active { color: var(--accent); text-decoration: none; }
 .content-title { color: var(--accent2); font-size: 1.8rem; font-weight: 450; margin-bottom: 1rem; margin-top: 1rem; }
 details { margin: .5rem; }
 details summary { cursor: pointer; color: var(--muted);}
-details div {
-  color: var(--muted);
-  margin-top: 0.5rem;
-  padding: 1rem;
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  background: #fff;
-}
 .image-clickable { text-align: center; }
 .image-clickable img { width: 35%; height: auto; }
 
@@ -94,7 +88,6 @@ p { margin-bottom: 1rem; }
 .post h1 { margin-bottom: 0.5rem; }
 .post .meta { color: var(--muted); font-size: 0.9rem; margin-bottom: 1.5rem; } *
 
-
 /*testing*/
 #topButton {
   display: none;
@@ -105,22 +98,20 @@ p { margin-bottom: 1rem; }
   border: none;
   outline: none;
   color: var(--muted);
-  background-color: var(--bg);
+  background-color: #2f8e9d47; /* var(--accent) with opacity */
   cursor: pointer;
   padding: 15px;
   border-radius: 500px;
   font-size: 10px;
-}
-
+} 
 #topButton:hover {
   background-color: var(--border); /* Add a dark-grey background on hover */
 }
 
-
 /* added styles */
 .callout {
   border-left: 3px solid var(--accent);
-  background: rgba(152, 115, 172, 0.06);
+  background: var(--cardbg);
   padding: 0.8rem 1.2rem;
   border-radius: 0 6px 6px 0;
   margin: 1.2rem 0;
@@ -159,7 +150,7 @@ p { margin-bottom: 1rem; }
   padding: 2rem;
   border: 1px solid var(--border);
   border-radius: 8px;
-  background: rgba(152, 115, 172, 0.04);
+  background: var(--cardbg);
 }
 .viz-cta p {
   color: var(--muted);
