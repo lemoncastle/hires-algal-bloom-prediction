@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Data Visualization</title>
-  <link rel="stylesheet" href="./src/css/style.css" />
-  <link rel="stylesheet" href="./src/css/bubble.css" />
-  <link rel="icon" href="./src/imgs/smile-16x16.png" type="image/png">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Data Visualization</title>
+    <link rel="stylesheet" href="./src/css/style.css" />
+    <link rel="stylesheet" href="./src/css/bubble.css" />
+    <link rel="icon" href="./src/imgs/smile-16x16.png" type="image/png">
 </head>
 
 <body>
@@ -24,60 +24,59 @@
 <button onclick="topFunction()" id="topButton" title="Go to top">↑ Top</button>
 
 <main class="container">
-  <p style="font-size: 0.85rem; margin-bottom: 0.5rem;">
-    <a href="lpoly_story.html" style="color: var(--muted); text-decoration: none;">← Back to Overview</a>
-  </p>
-  <p class="content-title">Lingulodinium polyedra — Bloom Conditions</p>
-  <p class="viz-subtitle">
-    Each bubble represents a single day of sensor measurements from Scripps Pier in La Jolla, CA.
-    Use the legend below to interpret bubble size and color, and the <strong>Play</strong> button to animate through time.
-  </p>
+    <p style="font-size: 0.85rem; margin-bottom: 0.5rem;">
+        <a href="lpoly_story.html" style="color: var(--muted); text-decoration: none;">← Back to Overview</a>
+    </p>
+    <p class="content-title">Lingulodinium polyedra — Bloom Conditions</p>
+    <p class="viz-subtitle">
+        Each bubble represents a single day of sensor measurements from Scripps Pier in La Jolla, CA.
+        Use the legend below to interpret bubble size and color, and the <strong>Play</strong> button to animate through time.
+    </p>
 
-  <div id="chart-container">
-    <div id="tooltip"></div>
-  </div>
+    <div id="chart-container">
+        <div id="tooltip"></div>
+    </div>
 
-  <div id="controls">
-    <button id="play-btn">▶ Play</button>
-    <input type="range" id="date-slider" min="0" step="1" value="0" />
-    <span id="date-label">–</span>
-    <span id="speed-label">Speed:</span>
-    <select id="speed-select">
-      <option value="400">Slow</option>
-      <option value="150" selected>Normal</option>
-      <option value="60">Fast</option>
-      <option value="20">Turbo</option>
-    </select>
-  </div>
+    <div id="controls">
+        <button id="play-btn">▶ Play</button>
+        <input type="range" id="date-slider" min="0" step="1" value="0" />
+        <span id="date-label">–</span>
+        <span id="speed-label">Speed:</span>
+        <select id="speed-select">
+            <option value="400">Slow</option>
+            <option value="150" selected>Normal</option>
+            <option value="60">Fast</option>
+            <option value="20">Turbo</option>
+        </select>
+    </div>
 
   <p class="data-disclaimer">Note: some dates are absent from the dataset due to sensor outages or collection gaps. The animation skips missing days rather than interpolating values.</p>
 
-  <div id="legend">
-    <div class="legend-section">
-      <span class="legend-title">Chlorophyll (µg/L)</span>
-      <div class="legend-row"><div class="legend-swatch" style="background:#c7e9c0"></div> Low (&lt; 10)</div>
-      <div class="legend-row"><div class="legend-swatch" style="background:#41ab5d"></div> Medium (10–40)</div>
-      <div class="legend-row"><div class="legend-swatch" style="background:#005a32"></div> High (&gt; 40)</div>
+    <div id="legend">
+        <div class="legend-section">
+            <span class="legend-title">Chlorophyll (µg/L)</span>
+            <div class="legend-row"><div class="legend-swatch" style="background:#c7e9c0"></div> Low (&lt; 10)</div>
+            <div class="legend-row"><div class="legend-swatch" style="background:#41ab5d"></div> Medium (10–40)</div>
+            <div class="legend-row"><div class="legend-swatch" style="background:#005a32"></div> High (&gt; 40)</div>
+        </div>
+        <div class="legend-section">
+            <span class="legend-title">Bloom volume (mL)</span>
+            <div style="font-size:10px;color:#bbb;font-style:italic;margin-bottom:4px;">expected mL of <em>L. poly</em> per liter of seawater</div>
+            <div class="legend-size-row" id="legend-size-row"></div>
+        </div>
     </div>
-    <div class="legend-section">
-      <span class="legend-title">Bloom volume (mL)</span>
-      <div style="font-size:10px;color:#bbb;font-style:italic;margin-bottom:4px;">expected mL of <em>L. poly</em> per liter of seawater</div>
-      <div class="legend-size-row" id="legend-size-row"></div>
-    </div>
-  </div>
 
-  <div id="timeline-section">
-    <p id="timeline-label">Bloom Event Timeline</p>
-    <p id="timeline-sublabel">Colored bars are bloom events (≥ 5 mL). Click any event to jump to it. The purple line tracks the current animation date.</p>
-    <div id="bloom-stats"></div>
-    <div id="timeline-container"></div>
-  </div>
-  <div id="timeline-tip"></div>
+    <div id="timeline-section">
+        <p id="timeline-label">Bloom Event Timeline</p>
+        <p id="timeline-sublabel">Colored bars are bloom events (≥ 5 mL). Click any event to jump to it. The purple line tracks the current animation date.</p>
+        <div id="bloom-stats"></div>
+        <div id="timeline-container"></div>
+    </div>
+    <div id="timeline-tip"></div>
 </main>
 
 <footer class="site-footer">
-  <div class="container">
-  </div>
+    <div class="container"></div>
 </footer>
 
 <script src="https://d3js.org/d3.v7.min.js"></script>

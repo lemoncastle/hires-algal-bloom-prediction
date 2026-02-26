@@ -1,5 +1,16 @@
-#chart-container { position: relative; margin: 0 auto; }
+:root {
+  --bg: #fdfdfd;
+  --text: #454545;
+  --muted: #666;
+  /* https://colorcodes.io/purple/lavender-purple-color-codes/ */
+  --accent: #2F8F9D;
+  --accent2: #1F4E5F;
+  --cardbg: #2f8f9d0d; /* 0.05 opacity */
+  --border: #e5e5e5;
+  font-family: Open Sans, sans-serif;
+}
 
+#chart-container { position: relative; margin: 0 auto; }
 /* Axes */
 .axis path, .axis line { stroke: #e5e5e5; }
 .axis text { fill: #666; font-size: 11px; }
@@ -13,7 +24,7 @@
     stroke-width: 1.2;
     transition: opacity 0.2s;
 }
-.bubble:hover { stroke: #4B365F; stroke-width: 2; opacity: 1 !important; }
+.bubble:hover { stroke: var(--accent2); stroke-width: 2; opacity: 1 !important; }
 
 /* Tooltip */
 #tooltip {
@@ -30,7 +41,7 @@
     max-width: 220px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.08);
 }
-#tooltip .tip-date { font-weight: 600; color: #9873AC; margin-bottom: 4px; }
+#tooltip .tip-date { font-weight: 600; color: var(--accent); margin-bottom: 4px; }
 #tooltip .bloom { font-size: 1.1em; font-weight: 700; }
 #tooltip .bloom.high { color: #c0392b; }
 #tooltip .bloom.med  { color: #e67e22; }
@@ -44,7 +55,7 @@
     margin-top: 16px;
 }
 #play-btn {
-    background: #9873AC;
+    background: var(--accent);
     border: none;
     color: white;
     border-radius: 75px;
@@ -55,15 +66,15 @@
     font-family: inherit;
     transition: background-color 0.3s ease;
 }
-#play-btn:hover { background: #4B365F; }
+#play-btn:hover { background: var(--accent2); }
 #date-slider {
     flex: 1;
-    accent-color: #9873AC;
+    accent-color: var(--accent);
     cursor: pointer;
 }
 #date-label {
     font-size: 13px;
-    color: #9873AC;
+    color: var(--accent);
     min-width: 100px;
     text-align: right;
     font-variant-numeric: tabular-nums;
@@ -99,9 +110,9 @@
 }
 .legend-size-row { display: flex; align-items: flex-end; gap: 10px; }
 .legend-bubble {
-    background: rgba(152, 115, 172, 0.2);
+    background: rgba(47, 143, 157, 0.2);
     border-radius: 50%;
-    border: 1px solid rgba(152, 115, 172, 0.4);
+    border: 1px solid rgba(47, 143, 157, 0.4);
 }
 
 .viz-subtitle {
@@ -133,7 +144,7 @@ svg { display: block; }
     box-shadow: 0 2px 8px rgba(0,0,0,0.08);
     z-index: 100;
 }
-#timeline-tip .tip-peak { font-weight: 700; color: #4B365F; }
+#timeline-tip .tip-peak { font-weight: 700; color: var(--accent2); }
 
 /* Chart card borders */
 #chart-container, #timeline-container {
@@ -150,7 +161,7 @@ svg { display: block; }
     flex-wrap: wrap;
 }
 .stat-item { display: flex; flex-direction: column; gap: 1px; }
-.stat-value { font-weight: 700; color: #4B365F; line-height: 1.1; }
+.stat-value { font-weight: 700; color: var(--accent2); line-height: 1.1; }
 .stat-label { color: #999; }
 
 /* Missing data disclaimer */

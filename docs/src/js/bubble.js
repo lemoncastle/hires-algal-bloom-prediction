@@ -142,7 +142,7 @@ d3.csv(CSV_PATH, row => {
     .attr("x", xScale(17)).attr("y", 0)
     .attr("width", xScale(22) - xScale(17))
     .attr("height", INNER_H)
-    .attr("fill", "rgba(152, 115, 172, 0.07)")
+    .attr("fill", "rgba(47, 143, 157, 0.07)")
     .attr("pointer-events", "none");
 
   g.append("text")
@@ -272,7 +272,7 @@ d3.csv(CSV_PATH, row => {
 
   const eventColor = d3.scaleSequential()
     .domain([0, maxPeak])
-    .interpolator(d3.interpolate("#c9a8e0", "#4B365F"));
+    .interpolator(d3.interpolate("#A8DCE0", "#1F4E5F"));
 
   const tlTip = d3.select("#timeline-tip");
 
@@ -321,7 +321,7 @@ d3.csv(CSV_PATH, row => {
   let timelineCursor = tg.append("line")
     .attr("x1", 0).attr("x2", 0)
     .attr("y1", -4).attr("y2", TL_IH + 4)
-    .attr("stroke", "#9873AC")
+    .attr("stroke", "#2F8F9D")
     .attr("stroke-width", 1.5)
     .attr("stroke-dasharray", "3,2")
     .attr("pointer-events", "none");
