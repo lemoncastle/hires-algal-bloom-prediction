@@ -148,7 +148,7 @@ d3.csv(CSV_PATH, row => {
   g.append("text")
     .attr("x", xScale(19.5)).attr("y", 12)
     .attr("text-anchor", "middle")
-    .attr("fill", "rgba(75, 54, 95, 0.5)")
+    .attr("fill", "rgba(31, 78, 95, 0.5)")
     .attr("font-size", "10px")
     .text("Typical bloom temp range");
 
