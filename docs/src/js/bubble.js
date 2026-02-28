@@ -10,7 +10,7 @@ const SEASON_STOPS = [
   { day: 365, r: 120, g: 180, b: 230 }, // Winter (wrap)
 ];
 
-function getSeasonColor(date) {
+function getSeasonColor(date, opacity = 0.08) {
   const jan1 = new Date(date.getFullYear(), 0, 1);
   const doy  = Math.floor((date - jan1) / 86400000); // day of year 0-364
   let i = 0;
@@ -20,7 +20,7 @@ function getSeasonColor(date) {
   const r = Math.round(a.r + (b.r - a.r) * t);
   const gv = Math.round(a.g + (b.g - a.g) * t);
   const bv = Math.round(a.b + (b.b - a.b) * t);
-  return `rgba(${r},${gv},${bv},0.08)`;
+  return `rgba(${r},${gv},${bv},${opacity})`;
 }
 
 function getSeasonName(date) {
@@ -382,7 +382,8 @@ d3.csv(CSV_PATH, row => {
     timelineCursor.attr("x1", tlX(d.date)).attr("x2", tlX(d.date));
 
     // Season badge
-    yearBadge.text(getSeasonName(d.date));
+    yearBadge.text(getSeasonName(d.date))
+      .attr("fill", getSeasonColor(d.date, 0.65));
 
     // Season background (smoothly interpolated)
     seasonRect.attr("fill", getSeasonColor(d.date));
