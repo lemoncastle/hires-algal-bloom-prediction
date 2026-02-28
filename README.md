@@ -25,7 +25,7 @@ This project was developed and tested on:
 
 Clone the Repository
 ```
-git clone UPDATE THIS LINK
+git clone https://github.com/lemoncastle/DSC180B.git
 ```
 
 Install dependencies under ```requirements.txt```
