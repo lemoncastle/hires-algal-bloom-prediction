@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -12,14 +12,19 @@
 <header class="site-header">
     <div class="container">
         <a href="index.html" class="prod-name">DSC180</a>
-        <nav>
-            <a href="index.html">Home</a>
-            <a href="about.html">About</a>
+        <nav class="site-nav">
+            <a href="index.html" class="active">Home</a>
+            <a href="project_details.html">Project Details</a>
+            
+            <a href="lpoly_bubble.html">Visualization</a>
+            <a href="https://dsc-capstone.org/" target="_blank" rel="noopener noreferrer">Github/Code</a>
+            <a href="https://dsc-capstone.org/" target="_blank" rel="noopener noreferrer">Paper</a>
+            <a href="https://dsc-capstone.org/" target="_blank" rel="noopener noreferrer">Poster</a>
         </nav>
     </div>
 </header>
 
-<button onclick="topFunction()" id="topButton" title="Go to top">↑ Top</button>
+<button onclick="topFunction()" id="topButton" title="Go to top">Top</button>
 
 <main class="container">
     <p class="content-title">Harmful Algal Blooms & <em>Lingulodinium polyedra</em></p>
@@ -38,7 +43,7 @@
 
     <p><em>Lingulodinium polyedra</em> (L. poly) is a bioluminescent dinoflagellate responsible for the vivid red tides that periodically wash over the coastline of Southern California, particularly around San Diego. During the day, dense blooms turn the surf a rust-red or brown color. At night, wave action triggers a brilliant blue bioluminescence, a phenomenon that draws crowds to the beach but signals a serious ecological imbalance.</p>
 
-    <p>L. poly blooms are driven by a combination of environmental triggers. Sea surface temperature is one of the strongest predictors: this species thrives in the 17–22°C range typical of late summer and early fall in San Diego. Ocean pH, salinity, dissolved oxygen, and chlorophyll concentration all interact to either promote or suppress bloom development. Understanding how these variables relate to bloom intensity is essential for early warning systems that could protect fisheries, beaches, and public health.</p>
+    <p>L. poly blooms are driven by a combination of environmental triggers. Sea surface temperature is one of the strongest predictors: this species thrives in the 17-22 C range typical of late summer and early fall in San Diego. Ocean pH, salinity, dissolved oxygen, and chlorophyll concentration all interact to either promote or suppress bloom development. Understanding how these variables relate to bloom intensity is essential for early warning systems that could protect fisheries, beaches, and public health.</p>
 
     <div class="callout">
         <strong>Why it glows:</strong> L. poly produces light through a chemical reaction involving luciferin and luciferase, the same basic mechanism used by fireflies. The blue flash is a defensive response triggered by physical disturbance, like a wave breaking or a fish swimming through the bloom.
@@ -57,7 +62,7 @@
     <div class="var-grid">
         <div class="var-card">
             <div class="var-name">X axis: Sea Water Temperature</div>
-            <div class="var-role">Primary bloom trigger. L. poly peaks in the 17–22°C warm-season window.</div>
+            <div class="var-role">Primary bloom trigger. L. poly peaks in the 17-22 C warm-season window.</div>
         </div>
         <div class="var-card">
             <div class="var-name">Y axis: Sea Water pH</div>
@@ -68,7 +73,7 @@
             <div class="var-role">Model-estimated L. poly concentration. Larger bubbles = denser bloom conditions.</div>
         </div>
         <div class="var-card">
-            <div class="var-name">Bubble color: Chlorophyll (µg/L)</div>
+            <div class="var-name">Bubble color: Chlorophyll (ug/L)</div>
             <div class="var-role">Background phytoplankton biomass. Darker green = higher chlorophyll, signaling more productive waters.</div>
         </div>
     </div>
@@ -79,7 +84,7 @@
 
     <div class="viz-cta">
         <p>Ready to explore the data?</p>
-        <a href="lpoly_bubble.html" class="btn1">Explore the Visualization →</a>
+        <a href="lpoly_bubble.html" class="btn1">Explore the Visualization -></a>
     </div>
 
 </main>
@@ -91,3 +96,6 @@
 <script src="./src/js/script.js"></script>
 </body>
 </html>
+
+
+

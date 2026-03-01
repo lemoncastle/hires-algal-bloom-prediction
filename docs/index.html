@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -12,71 +12,80 @@
 <header class="site-header">
     <div class="container">
         <a href="index.html" class="prod-name">DSC180</a>
-        <nav>
+        <nav class="site-nav">
             <a href="index.html" class="active">Home</a>
-            <a href="about.html">About</a>
+            <a href="project_details.html">Project Details</a>
+            
+            <a href="lpoly_bubble.html">Visualization</a>
+            <a href="https://dsc-capstone.org/" target="_blank" rel="noopener noreferrer">Github/Code</a>
+            <a href="https://dsc-capstone.org/" target="_blank" rel="noopener noreferrer">Paper</a>
+            <a href="https://dsc-capstone.org/" target="_blank" rel="noopener noreferrer">Poster</a>
         </nav>
     </div>
 </header>
 
-<!-- https://www.w3schools.com/howto/howto_js_scroll_to_top.asp -->
-<!-- look up how to do this properly, maybe not as a button -->
-<button onclick="topFunction()" id="topButton" title="Go to top">↑ Top</button>
+<button onclick="topFunction()" id="topButton" title="Go to top">Top</button>
 
 <main class="container">
-    <section class="prod">
-        <p class="title">Predicting Algal Blooms with High Resolution Imaging and Machine Learning</p>
-        <!-- <p class="prod1">Exploring Harmful Algal Blooms Through Data Science</p> -->
-        <div class="buttons">
-            <a href="lpoly_story.html" class="btn1">Visualization</a>
-            <a href="https://dsc-capstone.org/" target="_blank" class="btn2">Github/Code</a>
-            <a href="https://dsc-capstone.org/" target="_blank" class="btn2">Paper</a>
-            <a href="https://dsc-capstone.org/" target="_blank" class="btn3">Poster</a>
+    <p class="content-title">Harmful Algal Blooms & <em>Lingulodinium polyedra</em></p>
+
+    <p class="content-title" style="font-size: 1.2rem;">What is a Harmful Algal Bloom?</p>
+
+    <p>Algae are photosynthetic microorganisms found in virtually every aquatic ecosystem on Earth. Under normal conditions, they form the base of marine food webs and produce roughly half of the world's oxygen. However, when environmental conditions align [excess nutrients, warm temperatures, calm water, and sufficient sunlight], populations of certain algal species can expand explosively. These events are known as <strong>Harmful Algal Blooms (HABs)</strong>.</p>
+
+    <p>HABs can produce powerful toxins that accumulate in shellfish and fish, contaminate drinking water supplies, trigger fish kills by depleting dissolved oxygen, and cause respiratory distress in nearby communities. As climate change drives warmer ocean temperatures and altered precipitation patterns that carry more agricultural runoff into coastal waters, HABs are becoming more frequent, more widespread, and harder to predict.</p>
+
+    <div class="callout">
+        <strong>Economic & public health impact:</strong> HABs cost the United States an estimated $82 million per year in fisheries losses, public health costs, and tourism damage, and that number is rising.
+    </div>
+
+    <p class="content-title" style="font-size: 1.2rem;">Meet <em>Lingulodinium polyedra</em></p>
+
+    <p><em>Lingulodinium polyedra</em> (L. poly) is a bioluminescent dinoflagellate responsible for the vivid red tides that periodically wash over the coastline of Southern California, particularly around San Diego. During the day, dense blooms turn the surf a rust-red or brown color. At night, wave action triggers a brilliant blue bioluminescence, a phenomenon that draws crowds to the beach but signals a serious ecological imbalance.</p>
+
+    <p>L. poly blooms are driven by a combination of environmental triggers. Sea surface temperature is one of the strongest predictors: this species thrives in the 17-22 C range typical of late summer and early fall in San Diego. Ocean pH, salinity, dissolved oxygen, and chlorophyll concentration all interact to either promote or suppress bloom development. Understanding how these variables relate to bloom intensity is essential for early warning systems that could protect fisheries, beaches, and public health.</p>
+
+    <div class="callout">
+        <strong>Why it glows:</strong> L. poly produces light through a chemical reaction involving luciferin and luciferase, the same basic mechanism used by fireflies. The blue flash is a defensive response triggered by physical disturbance, like a wave breaking or a fish swimming through the bloom.
+    </div>
+
+    <p class="content-title" style="font-size: 1.2rem;">Our Approach: Machine Learning Meets Ocean Sensors</p>
+
+    <p>Our project uses continuous environmental sensor data collected from Scripps Institution of Oceanography's pier in La Jolla, CA. Each day, instruments record a suite of ocean and atmospheric measurements. We combine these readings with historical L. poly cell count observations to train a machine learning model that estimates bloom concentration [expressed as <strong>expected mL of L. poly per liter of seawater</strong>].</p>
+
+    <p>The goal is to identify which environmental variables are the strongest early indicators of a bloom, and whether sensor data alone can provide enough signal for reliable short-term predictions, without requiring costly, time-consuming manual water sampling.</p>
+
+    <p class="content-title" style="font-size: 1.2rem;">About the Visualization</p>
+
+    <p>The interactive bubble chart below plots <strong>804 days</strong> of data spanning October 2022 through December 2025. Each bubble represents a single day and encodes four variables simultaneously:</p>
+
+    <div class="var-grid">
+        <div class="var-card">
+            <div class="var-name">X axis: Sea Water Temperature</div>
+            <div class="var-role">Primary bloom trigger. L. poly peaks in the 17-22 C warm-season window.</div>
         </div>
-    </section>
-
-    <section class="content">
-
-        <p class="content-title">Motivation</p>
-
-        <p>Southern California's coastline experiences recurring Harmful Algal Blooms (HABs) driven by the dinoflagellate <em>Lingulodinium polyedra</em> (L. poly). During bloom events, dense concentrations of this bioluminescent organism turn the surf a deep rust-red by day and emit an electric-blue glow at night as waves disturb the water. While visually striking, these blooms signal a serious ecological imbalance: they can deplete dissolved oxygen, threaten marine food webs, and prompt closures of shellfish harvesting and recreational beaches along one of the country's most visited coastlines.</p>
-
-        <div class="callout">
-          <strong>Why it matters:</strong> HABs cost the United States an estimated $82 million per year in fisheries losses, public health costs, and tourism damage, and that number is rising as ocean conditions shift.
+        <div class="var-card">
+            <div class="var-name">Y axis: Sea Water pH</div>
+            <div class="var-role">Photosynthesis raises pH; respiration lowers it. Bloom activity often correlates with elevated pH.</div>
         </div>
-
-        <p>HABs are becoming more frequent and more intense as anthropogenic climate change alters the ocean conditions that govern them. Warming sea surface temperatures expand the seasonal window in which L. poly thrives. Changes in upwelling patterns and increased agricultural runoff raise nutrient levels that fuel rapid cell division. Meanwhile, ocean acidification from elevated atmospheric CO₂ can shift phytoplankton community dynamics in ways that favor bloom-forming species.</p>
-
-        <p>Despite this urgency, bloom prediction today still relies heavily on costly, labor-intensive manual water sampling that provides only sparse, delayed observations. Continuous environmental sensors deployed at research piers offer a potentially transformative alternative: they record temperature, pH, salinity, dissolved oxygen, and chlorophyll in real time, every day. Our project asks whether this stream of sensor data, combined with machine learning, contains enough signal to reliably estimate L. poly bloom concentration, without waiting for a lab result. If so, it could form the foundation of a low-cost, near-real-time early warning system for coastal managers, fisheries operators, and the public.</p>
-
-        <div class="stat-grid">
-          <div class="stat-card">
-            <div class="sc-value">804</div>
-            <div class="sc-label">days of sensor data</div>
-          </div>
-          <div class="stat-card">
-            <div class="sc-value">2022–2025</div>
-            <div class="sc-label">data collection period</div>
-          </div>
-          <div class="stat-card">
-            <div class="sc-value">Scripps Pier</div>
-            <div class="sc-label">La Jolla, CA</div>
-          </div>
+        <div class="var-card">
+            <div class="var-name">Bubble size: Bloom Volume (mL)</div>
+            <div class="var-role">Model-estimated L. poly concentration. Larger bubbles = denser bloom conditions.</div>
         </div>
+        <div class="var-card">
+            <div class="var-name">Bubble color: Chlorophyll (ug/L)</div>
+            <div class="var-role">Background phytoplankton biomass. Darker green = higher chlorophyll, signaling more productive waters.</div>
+        </div>
+    </div>
 
-        <p class="content-title">Results</p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    <p>Use the <strong>Play</strong> button to animate through time and watch bloom events develop. The 14-day trail shows how conditions evolve before and during a bloom. You can also drag the slider to scrub directly to any date, or adjust the playback speed.</p>
 
-        <p class="content-title">Methods</p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    <p>Look for large bubbles clustering inside the shaded <strong>"typical bloom temp range"</strong> band, and notice how bloom events tend to follow periods of rising temperature and shifting pH.</p>
 
-        <p class="content-title">Conclusion</p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-
-    </section>
+    <div class="viz-cta">
+        <p>Ready to explore the data?</p>
+        <a href="lpoly_bubble.html" class="btn1">Explore the Visualization -></a>
+    </div>
 
 </main>
 
@@ -87,3 +96,6 @@
 <script src="./src/js/script.js"></script>
 </body>
 </html>
+
+
+
