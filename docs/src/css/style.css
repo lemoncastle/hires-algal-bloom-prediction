@@ -1,7 +1,7 @@
-﻿@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap');
 
 :root {
-  --bg: #f4f7f8;
+  --bg: #ffffff;
   --surface: #ffffff;
   --surface-soft: #eef5f6;
   --text: #1f2933;
@@ -10,9 +10,8 @@
   --accent-dark: #0b5f6c;
   --border: #d8e3e6;
   --shadow: 0 10px 30px rgba(13, 44, 53, 0.08);
-  font-family: 'Manrope', 'Segoe UI', sans-serif;
+  font-family: 'Open Sans', 'Segoe UI', Tahoma, sans-serif;
 }
-
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
 ::selection {
@@ -20,13 +19,13 @@
 }
 
 body {
-  background:
-    radial-gradient(circle at 5% -5%, rgba(13, 124, 142, 0.16), transparent 35%),
-    radial-gradient(circle at 90% -10%, rgba(12, 96, 108, 0.12), transparent 35%),
-    var(--bg);
+  background: var(--bg);
   color: var(--text);
+  font-weight: 400;
   font-size: 18px;
   line-height: 1.7;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
 }
 
 a {
@@ -64,11 +63,12 @@ header .container {
 }
 
 .prod-name {
-  color: var(--text);
-  font-size: 1.95rem;
-  font-weight: 800;
+  color: #24313d;
+  font-size: 1.65rem;
+  font-weight: 700;
   text-decoration: none;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.01em;
+  line-height: 1.2;
 }
 
 .site-nav {
@@ -206,34 +206,49 @@ details summary {
 }
 
 .viz-cta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   text-align: center;
-  margin: 2rem 0 1rem;
-  padding: 1.5rem;
+  margin: 2rem auto 1.2rem;
+  padding: 1.15rem 1.25rem 1.25rem;
+  width: 100%;
+  max-width: none;
   border: 1px solid var(--border);
   border-radius: 14px;
   background: var(--surface-soft);
 }
 
 .viz-cta p {
-  color: var(--muted);
-  font-size: 0.96rem;
-  margin-bottom: 0.95rem;
+  color: #39566b;
+  font-size: 0.94rem;
+  font-weight: 600;
+  margin-bottom: 0.7rem;
+  max-width: none;
+  width: 100%;
+  text-align: center;
 }
 
 .btn1,
 .btn2,
 .btn3 {
-  display: inline-block;
-  margin-right: 0.55rem;
-  margin-bottom: 0.55rem;
-  padding: 0.66rem 1.12rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  margin: 0 auto;
+  min-width: 300px;
+  padding: 0.72rem 1.22rem;
   text-decoration: none;
   font-weight: 700;
+  font-size: 1.01rem;
+  letter-spacing: 0.01em;
   background-color: var(--accent);
   color: #ffffff;
   border-radius: 999px;
   border: none;
-  transition: background-color 0.2s ease, transform 0.2s ease;
+  transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
   cursor: pointer;
 }
 
@@ -242,6 +257,7 @@ details summary {
 .btn3:hover {
   background-color: var(--accent-dark);
   transform: translateY(-1px);
+  box-shadow: 0 8px 20px rgba(13, 124, 142, 0.24);
   color: #ffffff;
 }
 
@@ -324,4 +340,17 @@ details summary {
   body {
     font-size: 16px;
   }
+
+  .viz-cta {
+    padding: 1rem;
+  }
+
+  .btn1,
+  .btn2,
+  .btn3 {
+    min-width: 0;
+    width: 100%;
+    font-size: 0.95rem;
+  }
 }
+
