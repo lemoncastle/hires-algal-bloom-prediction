@@ -357,7 +357,7 @@ d3.csv(CSV_PATH, row => {
       .attr("fill",   d => colorScale(d.chl))
       .attr("opacity", (d, i) => {
         const age = visible.length - 1 - i;
-        return age === 0 ? 0.88 : Math.max(0.06, 0.45 - age * (0.45 / TRAIL_LENGTH));
+        return age === 0 ? 0.95 : Math.max(0.2, 0.65 - age * (0.65 / TRAIL_LENGTH));
       })
       .transition().duration(100)
       .attr("r", d => rScale(d.ml));
