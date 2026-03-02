@@ -10,7 +10,11 @@
   font-family: Open Sans, sans-serif;
 }
 
-#chart-container { position: relative; margin: 0 auto; }
+#chart-container {
+  position: relative;
+  margin: 0 auto;
+  width: fit-content;
+}
 /* Axes */
 .axis path, .axis line { stroke: #e5e5e5; }
 .axis text { fill: #666; font-size: 11px; }
@@ -20,11 +24,12 @@
 
 /* Bubbles */
 .bubble {
-    stroke: rgba(0,0,0,0.35);
-    stroke-width: 1.2;
+    stroke: rgba(0,0,0,0.5);
+    stroke-width: 1.8;
     transition: opacity 0.2s;
+    filter: drop-shadow(0 1px 2px rgba(0,0,0,0.15));
 }
-.bubble:hover { stroke: var(--accent2); stroke-width: 2; opacity: 1 !important; }
+.bubble:hover { stroke: var(--accent2); stroke-width: 2.5; opacity: 1 !important; }
 
 /* Tooltip */
 #tooltip {
@@ -151,6 +156,11 @@ svg { display: block; }
     border: 1px solid #e5e5e5;
     border-radius: 8px;
     overflow: hidden;
+}
+
+#timeline-container {
+    width: fit-content;
+    margin: 0 auto;
 }
 
 /* Stat bar */
