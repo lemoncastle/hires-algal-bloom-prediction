@@ -12,7 +12,6 @@
 
 #chart-container {
   position: relative;
-  margin: 0 auto;
   width: fit-content;
 }
 /* Axes */
@@ -160,7 +159,6 @@ svg { display: block; }
 
 #timeline-container {
     width: fit-content;
-    margin: 0 auto;
 }
 
 /* Stat bar */
