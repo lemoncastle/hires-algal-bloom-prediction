@@ -13,6 +13,7 @@
 #chart-container {
   position: relative;
   width: fit-content;
+  margin: 0 auto;
 }
 /* Axes */
 .axis path, .axis line { stroke: #e5e5e5; }
@@ -159,6 +160,7 @@ svg { display: block; }
 
 #timeline-container {
     width: fit-content;
+    margin: 0 auto;
 }
 
 /* Stat bar */
