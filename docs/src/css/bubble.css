@@ -101,7 +101,7 @@
     display: flex;
     gap: 32px;
     margin-top: 16px;
-    font-size: 11px;
+    font-size: 14px;
     color: #666;
     align-items: flex-start;
 }
@@ -126,12 +126,17 @@
     margin-bottom: 20px;
 }
 
+/* Remove paragraph max-width restriction for visualization page */
+main.container p {
+    max-width: none;
+}
+
 svg { display: block; }
 
 /* Timeline */
 #timeline-section { margin-top: 28px; }
-#timeline-label { font-weight: 600; color: #454545; margin-bottom: 3px; }
-#timeline-sublabel { color: #666; margin-bottom: 8px; }
+#timeline-label { font-weight: 600; color: #454545; margin-bottom: 3px; font-size: 16px; }
+#timeline-sublabel { color: #666; margin-bottom: 8px; font-size: 14px; }
 .event-rect { cursor: pointer; }
 .event-rect:hover { opacity: 1 !important; }
 #timeline-tip {
@@ -176,8 +181,8 @@ svg { display: block; }
 
 /* Missing data disclaimer */
 .data-disclaimer {
-    font-size: 11px;
-    color: #bbb;
+    font-size: 14px;
+    color: #999;
     font-style: italic;
     margin-top: 8px;
 }
