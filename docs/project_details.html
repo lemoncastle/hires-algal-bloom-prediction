@@ -59,12 +59,172 @@
         </div>
 
         <p class="content-title">Results</p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <p>We tested three modeling strategies to predict <em>L. poly</em> concentration and compared how well they captured bloom behavior over time. The main story is simple: baseline regression gives a strong starting point, univariate forecasting captures some timing signal, and multiview modeling gives the most useful forecast skill.</p>
 
-        <p class="content-title">Methods</p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <p class="content-title" style="font-size: 1.2rem;">1) Baseline Models</p>
+        <p>Using IFCB image features only, Random Forest was the strongest baseline model with <strong>R² = 0.523</strong> and <strong>RMSE = 7.990</strong>. Linear Regression and Ridge Regression were lower at R² values of 0.245 and 0.349. This tells us the relationship between morphology and bloom concentration is not purely linear.</p>
+
+        <div class="var-grid">
+          <div class="var-card">
+            <div class="var-name">Linear Regression</div>
+            <div class="var-role">R² = 0.245, RMSE = 10.051</div>
+          </div>
+          <div class="var-card">
+            <div class="var-name">Ridge Regression</div>
+            <div class="var-role">R² = 0.349, RMSE = 9.331</div>
+          </div>
+          <div class="var-card">
+            <div class="var-name">Random Forest</div>
+            <div class="var-role">R² = 0.523, RMSE = 7.990</div>
+          </div>
+          <div class="var-card">
+            <div class="var-name">Top image signals</div>
+            <div class="var-role">Ring and moment features carried most of the predictive signal.</div>
+          </div>
+        </div>
+
+        <p class="content-title" style="font-size: 1.2rem;">2) Univariate Forecasting</p>
+        <p>When we forecasted from the target history alone, the best effective skill occurred at <strong>Tp = 3 days</strong> with <strong>ρeff = 0.388</strong>. Skill dropped in the middle horizons, then showed a smaller return around 20 to 30 days. In plain terms, this model sees some timing structure, but it is not consistently strong across all forecast windows.</p>
+
+        <div class="callout">
+          <strong>Simple takeaway:</strong> univariate forecasting can capture near term behavior, but it misses important context from other measurements.
+        </div>
+
+        <p class="content-title" style="font-size: 1.2rem;">3) Multiview Embedding</p>
+        <p>Multiview Embedding gave the strongest overall forecast performance. At <strong>Tp = 3</strong>, all feature sets reached about 0.58 in effective skill, and the combined model had <strong>ρeff = 0.581</strong> with <strong>RMSE = 0.388</strong>. A second strong window appeared near <strong>Tp = 25</strong>, where the combined model reached <strong>ρeff = 0.473</strong>. This two peak pattern suggests one short timing cycle and another longer cycle in bloom dynamics.</p>
+
+        <div class="var-grid">
+          <div class="var-card">
+            <div class="var-name">Best short horizon</div>
+            <div class="var-role">Tp = 3, ρeff = 0.581, RMSE = 0.388 (combined model)</div>
+          </div>
+          <div class="var-card">
+            <div class="var-name">Best longer horizon</div>
+            <div class="var-role">Tp = 25, ρeff = 0.473 (combined model)</div>
+          </div>
+          <div class="var-card">
+            <div class="var-name">Top environmental signals</div>
+            <div class="var-role">Sea water temperature, sigma t, and conductivity were most consistently useful.</div>
+          </div>
+          <div class="var-card">
+            <div class="var-name">Why combined wins</div>
+            <div class="var-role">Image and environmental features provide complementary information.</div>
+          </div>
+        </div>
+
+        <div class="callout">
+          <strong>Overall result:</strong> Random Forest is a strong baseline, but Multiview Embedding with combined inputs produced the best forecasting skill across meaningful time horizons.
+        </div>
+
+        <p class="content-title" style="font-size: 1.2rem;">Model Comparison</p>
+
+        <style>
+          #model-comp-wrap {
+            margin: 1.1rem 0 1.5rem;
+            overflow-x: auto;
+            border: 1px solid #d8e3e6;
+            border-radius: 14px;
+            background: #ffffff;
+            box-shadow: 0 10px 30px rgba(13, 44, 53, 0.08);
+          }
+          #model-comp-table {
+            width: 100%;
+            min-width: 860px;
+            table-layout: fixed;
+            border-collapse: collapse;
+            font-size: 1rem;
+          }
+          #model-comp-table thead tr {
+            background: linear-gradient(180deg, #f6fbfc 0%, #eef5f6 100%);
+            border-bottom: 1px solid #d8e3e6;
+          }
+          #model-comp-table th,
+          #model-comp-table td {
+            padding: 0.78rem 0.9rem !important;
+            line-height: 1.35 !important;
+            vertical-align: top;
+            white-space: normal;
+            overflow-wrap: anywhere;
+          }
+          #model-comp-table th {
+            text-align: center;
+            font-weight: 700;
+            color: #111827;
+            font-size: 0.95rem;
+          }
+          #model-comp-table td {
+            text-align: center;
+            color: #1f2933;
+            border-bottom: 1px solid #edf3f5;
+          }
+          #model-comp-table td:first-child {
+            text-align: left;
+            font-weight: 700;
+            width: 26%;
+            color: #111827;
+          }
+          #model-comp-table tbody tr:nth-child(even) td {
+            background: #fbfefe;
+          }
+          #model-comp-table tbody tr:last-child td {
+            border-bottom: none;
+          }
+        </style>
+
+        <div class="compare-table-wrap" id="model-comp-wrap">
+          <table class="compare-table" id="model-comp-table">
+            <thead>
+              <tr>
+                <th></th>
+                <th>Random Forest</th>
+                <th>Simplex</th>
+                <th>MVE (Combined)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Approach</td>
+                <td>Supervised</td>
+                <td>EDM (univariate)</td>
+                <td>EDM (multivariate)</td>
+              </tr>
+              <tr>
+                <td>Temporal structure</td>
+                <td>No (random split)</td>
+                <td>Yes</td>
+                <td>Yes</td>
+              </tr>
+              <tr>
+                <td>Features used</td>
+                <td>All image</td>
+                <td>Target only</td>
+                <td>Image + Env.</td>
+              </tr>
+              <tr>
+                <td>Best metric</td>
+                <td>R&sup2; = 0.523</td>
+                <td>&rho;<sub>eff</sub> = 0.388</td>
+                <td>&rho;<sub>eff</sub> = 0.581</td>
+              </tr>
+              <tr>
+                <td>Best horizon</td>
+                <td>N/A (static)</td>
+                <td>Tp = 3</td>
+                <td>Tp = 3</td>
+              </tr>
+              <tr>
+                <td>Multi step forecast</td>
+                <td>No</td>
+                <td>Yes (Tp = 1 to 30)</td>
+                <td>Yes (Tp = 1 to 31)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p class="content-title">Methodology</p>
+        <p>Our workflow started by combining daily environmental sensor readings from Scripps Pier with IFCB image based measurements of <em>L. poly</em>. After aligning everything by date, we cleaned missing values and prepared one daily record that captured both ocean conditions and bloom activity. This gave us a consistent timeline we could use for both modeling and visualization.</p>
+        <p>We then compared several modeling approaches to understand both accuracy and timing. First, we trained baseline regression models to set a clear reference point. Next, we used time aware dynamic models to forecast bloom behavior across multiple future horizons. In parallel, we built an interactive bubble chart so users can explore how temperature, pH, chlorophyll, and predicted bloom volume change together over time. This combination of models and visualization lets us both measure performance and communicate patterns in a way that is easy to interpret.</p>
 
         <p class="content-title">Conclusion</p>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>

@@ -1,4 +1,4 @@
-console.log('you semll'); // sry
+console.log('site script loaded');
 
 // Change document title when details is opened/closed
 (() => {
