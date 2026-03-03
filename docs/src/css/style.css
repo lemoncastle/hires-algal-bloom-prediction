@@ -1,13 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap');
 
 :root {
-  --bg: #ffffff;
+  --bg: #fdfdfd;
   --surface: #ffffff;
   --surface-soft: #eef5f6;
   --text: #1f2933;
   --muted: #52616d;
   --accent: #0d7c8e;
   --accent-dark: #0b5f6c;
+  --accent-title: #183E4B;
   --border: #d8e3e6;
   --shadow: 0 10px 30px rgba(13, 44, 53, 0.08);
   font-family: 'Open Sans', 'Segoe UI', Tahoma, sans-serif;
@@ -22,7 +23,7 @@ body {
   background: var(--bg);
   color: var(--text);
   font-weight: 400;
-  font-size: 18px;
+  font-size: 17px;
   line-height: 1.7;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -37,7 +38,7 @@ a:hover {
 }
 
 .container {
-  max-width: 1040px;
+  max-width: 960px;
   margin: 0 auto;
   padding: 1rem 1.25rem;
 }
@@ -64,8 +65,8 @@ header .container {
 
 .prod-name {
   color: #24313d;
-  font-size: 1.65rem;
-  font-weight: 700;
+  font-size: 1.6rem;
+  font-weight: 500;
   text-decoration: none;
   letter-spacing: 0.01em;
   line-height: 1.2;
@@ -128,17 +129,25 @@ main.container {
 }
 
 .content-title {
-  color: var(--text);
+  color: var(--accent-title);
   font-size: clamp(1.55rem, 2.8vw, 2rem);
-  font-weight: 800;
+  font-weight: 750;
   margin-top: 1.25rem;
   margin-bottom: 0.8rem;
   letter-spacing: -0.01em;
 }
+/* .content-title { 
+  color: var(--accent-title); 
+  font-size: 1.8rem; 
+  font-weight: 600; 
+  margin-bottom: 1rem; 
+  margin-top: 1rem;
+} */
+
 
 p {
   margin-bottom: 1rem;
-  max-width: 74ch;
+  /* max-width: 74ch; */
 }
 
 details {
@@ -171,6 +180,7 @@ details summary {
   border-radius: 0 10px 10px 0;
   margin: 1.1rem 0;
   color: var(--text);
+  /* max-width: 74ch; */
 }
 
 .callout strong {
@@ -425,3 +435,6 @@ details summary {
 
 }
 
+strong {
+  color: var(--accent-title);
+}
