@@ -1,4 +1,4 @@
-console.log('site script loaded');
+// console.log('site script loaded');
 
 // Change document title when details is opened/closed
 (() => {

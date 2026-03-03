@@ -4,18 +4,20 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Project Details</title>
-    <link rel="stylesheet" href="./src/css/style.css" />
-    <link rel="icon" href="./src/imgs/alembic_16x16.png" type="image/png">
+    <link rel="stylesheet" href="../src/css/style.css" />
+    <link rel="stylesheet" href="../src/css/p_details.css" />
+    <link rel="icon" href="../src/imgs/alembic_16x16.png" type="image/png">
 </head>
 
 <body>
 <header class="site-header">
     <div class="container">
-        <a href="index.html" class="prod-name">DSC180</a>
+        <a href="../" class="prod-name">DSC180</a>
         <nav class="site-nav">
-            <a href="index.html">Home</a>
-            <a href="project_details.html" class="active">Project Details</a>
-            <a href="lpoly_bubble.html">Visualization</a>
+            <a href="../">Home</a>
+            <a href="../report/" class="active">Project Details</a>
+            <a href="../visualization/">Visualization</a>
+
             <a href="https://dsc-capstone.org/" target="_blank" rel="noopener noreferrer">Github/Code</a>
             <a href="https://dsc-capstone.org/" target="_blank" rel="noopener noreferrer">Paper</a>
             <a href="https://dsc-capstone.org/" target="_blank" rel="noopener noreferrer">Poster</a>
@@ -26,9 +28,9 @@
 <button onclick="topFunction()" id="topButton" title="Go to top">Top</button>
 
 <main class="container">
-    <section class="prod">
+    <!-- <section class="prod">
         <p class="title">Project Details</p>
-    </section>
+    </section> -->
 
     <section class="content">
         <p class="content-title">Motivation</p>
@@ -118,59 +120,6 @@
 
         <p class="content-title" style="font-size: 1.2rem;">Model Comparison</p>
 
-        <style>
-          #model-comp-wrap {
-            margin: 1.1rem 0 1.5rem;
-            overflow-x: auto;
-            border: 1px solid #d8e3e6;
-            border-radius: 14px;
-            background: #ffffff;
-            box-shadow: 0 10px 30px rgba(13, 44, 53, 0.08);
-          }
-          #model-comp-table {
-            width: 100%;
-            min-width: 860px;
-            table-layout: fixed;
-            border-collapse: collapse;
-            font-size: 1rem;
-          }
-          #model-comp-table thead tr {
-            background: linear-gradient(180deg, #f6fbfc 0%, #eef5f6 100%);
-            border-bottom: 1px solid #d8e3e6;
-          }
-          #model-comp-table th,
-          #model-comp-table td {
-            padding: 0.78rem 0.9rem !important;
-            line-height: 1.35 !important;
-            vertical-align: top;
-            white-space: normal;
-            overflow-wrap: anywhere;
-          }
-          #model-comp-table th {
-            text-align: center;
-            font-weight: 700;
-            color: #111827;
-            font-size: 0.95rem;
-          }
-          #model-comp-table td {
-            text-align: center;
-            color: #1f2933;
-            border-bottom: 1px solid #edf3f5;
-          }
-          #model-comp-table td:first-child {
-            text-align: left;
-            font-weight: 700;
-            width: 26%;
-            color: #111827;
-          }
-          #model-comp-table tbody tr:nth-child(even) td {
-            background: #fbfefe;
-          }
-          #model-comp-table tbody tr:last-child td {
-            border-bottom: none;
-          }
-        </style>
-
         <div class="compare-table-wrap" id="model-comp-wrap">
           <table class="compare-table" id="model-comp-table">
             <thead>
@@ -236,7 +185,7 @@
     <div class="container"></div>
 </footer>
 
-<script src="./src/js/script.js"></script>
+<script src="../src/js/script.js"></script>
 </body>
 </html>
 

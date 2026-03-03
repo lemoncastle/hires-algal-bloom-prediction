@@ -1,4 +1,4 @@
-const CSV_PATH = "./src/data/environment_LPoly.csv";
+const CSV_PATH = "../src/data/environment_LPoly.csv";
 
 // Color stops keyed to approximate season midpoints (day of year)
 // Winter peak ~Jan 15 (14), Spring ~Apr 15 (105), Summer ~Jul 15 (196), Fall ~Oct 15 (288)
