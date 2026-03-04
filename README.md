@@ -4,10 +4,10 @@ This repository contains data collection, processing, and modeling scripts for a
 
 Working title: Predicting Algal Blooms with High Resolution Imaging and Machine Learning
 
-- Github repo: [https://github.com/lemoncastle/DSC180B](https://github.com/lemoncastle/DSC180B)
-- Website: [https://lemoncastle.github.io/DSC180B/](https://lemoncastle.github.io/DSC180B/)
-- Report: [https://github.com/lemoncastle/DSC180B/blob/mochima/other/report_2-15.pdf](https://github.com/lemoncastle/DSC180B/blob/mochima/other/report_2-15.pdf)
-- Poster: [https://github.com/lemoncastle/DSC180B/blob/mochima/other/poster_2-22.pdf](https://github.com/lemoncastle/DSC180B/blob/mochima/other/poster_2-22.pdf)
+- Github repo: [https://github.com/lemoncastle/hires-algal-bloom-prediction](https://github.com/lemoncastle/hires-algal-bloom-prediction)
+- Website: [https://lemoncastle.github.io/hires-algal-bloom-prediction/](https://lemoncastle.github.io/hires-algal-bloom-prediction/)
+- Report: tbd
+- Poster: tbd
 
 ### Repo Directory
 - ```/collect-process``` Scripts for data collection and processing
@@ -25,7 +25,7 @@ This project was developed and tested on:
 
 Clone the Repository
 ```
-git clone https://github.com/lemoncastle/DSC180B.git
+git clone https://github.com/lemoncastle/hires-algal-bloom-prediction.git
 ```
 
 Install dependencies under ```requirements.txt```
