@@ -10,12 +10,12 @@ Working title: Predicting Algal Blooms with High Resolution Imaging and Machine 
 - Poster: tbd
 
 ### Repo Directory
-- ```/collect-process``` Scripts for data collection and processing
-- ```/data``` Processed datasets used for analysis
-- ```/docs``` Project website
-- ```/imgs``` Figures and visualizations
-- ```/models``` Trained models and outputs
-- ```/other```  Write-ups, poster, and supplementary materials
+- ```/collect-process/``` Scripts for data collection and processing
+- ```/data/``` Processed datasets used for analysis
+- ```/docs/``` Project website
+- ```/imgs/``` Figures and visualizations
+- ```/models/``` Trained models and outputs
+- ```/other/```  Write-ups, poster, and supplementary materials
 
 ## Getting Started
 
@@ -75,49 +75,51 @@ collect-process/scrapeAPI.py
 - Any modern Chromium-based browser is supported via ```webdriver-manager```
 
 ### Environmental Data Sources
-[California Ocean Observing Systems Data Portal](https://data.caloos.org/#metadata/120738/station/data) at Scripps Pier
-- Collected using CTD and SeapHOx instrumentation:
-
+- [California Ocean Observing Systems Data Portal](https://data.caloos.org/#metadata/120738/station/data) at Scripps Pier
+    - Collected using CTD and SeapHOx instrumentation
+- [NOAA Tides and Currents](https://tidesandcurrents.noaa.gov/stationhome.html?id=9410230) at Scripps Pier
+    - Hourly meteorological and water-level observations
+- [CALHABMAP](https://data.caloos.org/#module-metadata/5c35689e-2b3a-4bc9-9f5d-e526a9c19620/85653d75-c0b7-48e9-b1b1-f1c4071b10d3)
+    - Provides additional phytoplankton-related observations at Scripps Pier dating back to 2019.
+    - These data are manually collected and available at weekly to monthly resolution.
 ```
 Temperature
-Salinity 
+Salinity
 Chlorophyll
 Conductivity
-Sea Water Density 
-Sea Water Pressure 
+Sea water density
+Sea water pressure
 pH
-Oxygen
+Dissolved oxygen
+Wind speed
+Wind direction
+Air temperature
+Barometric pressure
+Humidity
+Water levels
 ```
-[NOAA Tides and Currents](https://tidesandcurrents.noaa.gov/stationhome.html?id=9410230) at Scripps Pier
-- Hourly meteorological and water-level observations:
-```
-Wind Speed (m/s)
-Wind Dir (deg)
-Wind Gust (m/s)
-Air Temp (°C)
-Baro (mb)Humidity (%)
-Visibility (km)
-Water Levels (m)
-```
-[CALHABMAP](https://data.caloos.org/#module-metadata/5c35689e-2b3a-4bc9-9f5d-e526a9c19620/85653d75-c0b7-48e9-b1b1-f1c4071b10d3)
-- Provides additional phytoplankton-related observations at Scripps Pier dating back to 2019.
-- These data are manually collected and available at weekly to monthly resolution.
+
 
 ## Running Scripts
 ### Data Collection
 ```
+collect-process/scrape_monthly.py
 collect-process/scrapewAPI.py
 ```
+Downloaded data will be under ```/ifcb_downloads[x]/```
+
 ### Data Processing
 ```
 collect-process/process_monthly.py
 collect-process/process_ifcb_158.py
 collect-process/process_env.py
 ```
+Processed data under ```/processed/```
 ### Models
 ```
 models/simplex.ipynb
 models/mve.ipynb
 ```
 
-Note: webscraping/data collection can take many hours
+- Note: webscraping/data collection can take many hours
+- Visuals used in poster/report generated in ```mve.ipynb``` 
