@@ -53,6 +53,11 @@ header.site-header {
   background: rgba(255, 255, 255, 0.9);
   backdrop-filter: blur(10px);
 }
+@media (max-width: 767px) {
+  header.site-header {
+    position: static;
+  }
+}
 
 header .container {
   display: flex;
@@ -258,15 +263,18 @@ details summary {
   cursor: pointer;
 } */
 
+.buttons { margin-top: 1rem; }
 .btn1, .btn2, .btn3 {
   display: inline-block;
   margin-right: 0.8rem;
+  max-width: max-content;
   padding: 0.7rem 1.2rem;
+  border-radius: 5px;
   text-decoration: none;
   font-weight: 450;
   background-color: var(--accent);
   color: #fff;
-  border-radius: 25px;
+  border-radius: 75px;
   transition: background-color 0.3s ease;
   cursor: pointer; 
 }
@@ -367,7 +375,6 @@ details summary {
 .compare-table tbody tr:hover td {
   background: #f3f9fa;
 }
-
 
 #topButton {
   display: none;
