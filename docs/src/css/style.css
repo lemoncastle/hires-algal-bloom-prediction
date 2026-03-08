@@ -126,7 +126,7 @@ main.container {
 
 .content-title { 
   color: var(--accent-title); 
-  font-size: 1.2rem; 
+  font-size: 1.3rem; 
   font-weight: 650; 
   margin-bottom: 1rem; 
   margin-top: 1rem;
@@ -148,6 +148,7 @@ details summary {
 }
 
 .image-clickable {
+  margin-top: -20px;
   text-align: center;
 }
 
@@ -156,7 +157,13 @@ details summary {
   height: auto;
 }
 
-.container.narrow ul {
+.image-credit {
+    font-size: 0.85rem;
+    color: #555;
+    margin-top: 6px;
+}
+
+ul {
   padding-left: 1.5rem;
 }
 

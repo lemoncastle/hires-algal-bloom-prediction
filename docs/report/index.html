@@ -35,45 +35,60 @@
     </section>
 
     <p class="content-title">Motivation</p>
-    <p>
-        Southern California's coastline experiences recurring Harmful Algal Blooms (HABs) driven by the dinoflagellate <em>Lingulodinium polyedra</em> (L. poly). During bloom events, dense concentrations of this bioluminescent organism turn the surf a deep rust-red by day and emit an electric-blue glow at night as waves disturb the water. While visually striking, these blooms signal a serious ecological imbalance: they can deplete dissolved oxygen, threaten marine food webs, and prompt closures of shellfish harvesting and recreational beaches along one of the country's most visited coastlines.
+    <p>Southern California’s coastline experiences recurring Harmful Algal Blooms (HABs) driven by the dinoflagellate <em>Lingulodinium polyedra</em> (L. poly). During bloom events, dense concentrations of this bioluminescent organism turn the surf a deep rust-red by day and emit an electric-blue glow at night as waves disturb the water. While visually striking, these blooms signal a serious ecological imbalance: they can deplete dissolved oxygen, disrupt marine food webs, and trigger closures of shellfish harvesting and recreational beaches along one of the country’s most visited coastlines.
+    </p>
+
+    <div class="image-clickable">
+        <a href="https://commons.wikimedia.org/wiki/File:Lingulodinium_polyedra_(San_Diego_County,_Californie,_USA).gif" target="_blank">
+            <img src="../src/imgs/waves.gif" alt="Bioluminescent waves caused by Lingulodinium polyedra">
+        </a>
+    </div>
+
+    <p class="image-credit">
+        Image by <a href="https://www.inaturalist.org/users/photocyte" target="_blank">Tim Fallon</a>,
+        via <a href="https://commons.wikimedia.org/wiki/File:Lingulodinium_polyedra_(San_Diego_County,_Californie,_USA).gif" target="_blank">Wikimedia Commons</a>.
+        Licensed under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank">CC BY 4.0</a>.
     </p>
 
     <div class="callout">
-        <strong>Why it matters:</strong> HABs cost the United States an estimated $82 million per year in fisheries losses, public health costs, and tourism damage, and that number is rising as ocean conditions shift.
+    <strong>Why it matters:</strong> Harmful algal blooms cost the United States an estimated <strong>$82 million per year</strong> through fisheries losses, public health impacts, and tourism disruption—and those costs are rising as ocean conditions change.
     </div>
 
-    <p>
-        HABs are becoming more frequent and more intense as anthropogenic climate change alters the ocean conditions that govern them. Warming sea surface temperatures expand the seasonal window in which L. poly thrives. Changes in upwelling patterns and increased agricultural runoff raise nutrient levels that fuel rapid cell division. Meanwhile, ocean acidification from elevated atmospheric CO2 can shift phytoplankton community dynamics in ways that favor bloom-forming species.
+    <p>HABs are becoming more frequent and more intense as anthropogenic climate change alters the ocean conditions that regulate phytoplankton growth. Warmer sea surface temperatures expand the seasonal window in which <em>L. polyedra</em> thrives. Changes in coastal upwelling and agricultural runoff increase nutrient availability, fueling rapid population growth. At the same time, ocean acidification and shifting ocean chemistry may alter phytoplankton community dynamics in ways that favor bloom-forming species.
     </p>
 
-    <p>
-        Despite this urgency, bloom prediction today still relies heavily on costly, labor-intensive manual water sampling that provides only sparse, delayed observations. Continuous environmental sensors deployed at research piers offer a potentially transformative alternative: they record temperature, pH, salinity, dissolved oxygen, and chlorophyll in real time, every day. Our project asks whether this stream of sensor data, combined with machine learning, contains enough signal to reliably estimate L. poly bloom concentration, without waiting for a lab result. If so, it could form the foundation of a low-cost, near-real-time early warning system for coastal managers, fisheries operators, and the public
-    <p>
+    <p>Despite the growing risks, bloom monitoring still relies heavily on labor-intensive manual water sampling, which provides sparse and delayed observations. Continuous environmental sensors deployed at research piers offer a promising alternative: they record temperature, pH, salinity, dissolved oxygen, and chlorophyll continuously in near real time.
+    </p>
+
+    <p>Our project explores whether this stream of environmental sensor data—combined with automated plankton imaging and nonlinear predictive modeling—contains enough signal to estimate <em>L. polyedra</em> bloom dynamics before they become visible at the surface. If successful, this approach could help support earlier warnings for coastal managers, fisheries operators, and the public.
+    </p>
 
     <div class="stat-grid">
         <div class="stat-card">
-        <div class="sc-value">804</div>
-        <div class="sc-label">days of sensor data</div>
+            <div class="sc-value">804</div>
+            <div class="sc-label">days of observations</div>
         </div>
         <div class="stat-card">
-        <div class="sc-value">2022-2025</div>
-        <div class="sc-label">data collection period</div>
+            <div class="sc-value">2022–2025</div>
+            <div class="sc-label">data collection period</div>
         </div>
         <div class="stat-card">
-        <div class="sc-value">Scripps Pier</div>
-        <div class="sc-label">La Jolla, CA</div>
+            <div class="sc-value">Scripps Pier</div>
+            <div class="sc-label">La Jolla, CA</div>
         </div>
     </div>
 
     <p class="content-title">Results</p>
-    <p>
-        We tested three modeling strategies to predict <em>L. poly</em> concentration and compared how well they captured bloom behavior over time. The main story is simple: baseline regression gives a strong starting point, univariate forecasting captures some timing signal, and multiview modeling gives the most useful forecast skill.
+    <p>We evaluated several modeling approaches to estimate and forecast 
+    <em>L. polyedra</em> bloom dynamics from IFCB image features and environmental data. 
+    We tried three approaches, baseline regression models, univariate forecasting, and multiview embedding.
     </p>
 
     <p class="content-title">1) Baseline Models</p>
-    <p>
-        Using IFCB image features only, Random Forest was the strongest baseline model with <strong>R² = 0.523</strong> and <strong>RMSE = 7.990</strong>. Linear Regression and Ridge Regression were lower at R² values of 0.245 and 0.349. This tells us the relationship between morphology and bloom concentration is not purely linear.
+    <p>Using IFCB image features alone, the Random Forest model produced the strongest baseline performance with 
+    <strong>R² = 0.523</strong> and <strong>RMSE = 7.990</strong>. Linear Regression and Ridge Regression 
+    achieved lower scores (R² = 0.245 and 0.349 respectively), indicating that the relationship between 
+    cell morphology and bloom concentration is strongly nonlinear.
     </p>
 
     <div class="var-grid">
@@ -91,13 +106,16 @@
         </div>
         <div class="var-card">
         <div class="var-name">Top image signals</div>
-        <div class="var-role">Ring and moment features carried most of the predictive signal.</div>
+        <div class="var-role">Ring intensity patterns and moment invariants were the strongest predictors.</div>
         </div>
     </div>
 
     <p class="content-title">2) Univariate Forecasting</p>
     <p>
-        When we forecasted from the target history alone, the best effective skill occurred at <strong>Tp = 3 days</strong> with <strong>ρeff = 0.388</strong>. Skill dropped in the middle horizons, then showed a smaller return around 20 to 30 days. In plain terms, this model sees some timing structure, but it is not consistently strong across all forecast windows.
+    When forecasting from the bloom history alone using simplex projection, the strongest effective skill 
+    occurred at <strong>Tp = 3 days</strong> with <strong>ρeff = 0.388</strong>. Skill declined at intermediate 
+    horizons before showing a modest recovery around <strong>20–30 days</strong>, suggesting weak longer-period 
+    structure in bloom dynamics.
     </p>
 
     <div class="callout">
@@ -106,8 +124,24 @@
 
     <p class="content-title">3) Multiview Embedding</p>
     <p>
-        Multiview Embedding gave the strongest overall forecast performance. At <strong>Tp = 3</strong>, all feature sets reached about 0.58 in effective skill, and the combined model had <strong>ρeff = 0.581</strong> with <strong>RMSE = 0.388</strong>. A second strong window appeared near <strong>Tp = 25</strong>, where the combined model reached <strong>ρeff = 0.473</strong>. This two peak pattern suggests one short timing cycle and another longer cycle in bloom dynamics.
+    Multiview Embedding produced the strongest forecasting performance across nearly all horizons. 
+    At <strong>Tp = 3 days</strong>, the combined model reached 
+    <strong>ρeff = 0.581</strong> with <strong>RMSE = 0.387</strong>. 
+    Forecast skill then declined at intermediate horizons before rising again near 
+    <strong>Tp = 29 days</strong>, where the combined model achieved 
+    <strong>ρeff = 0.452</strong>.
     </p>
+
+    <p>
+    This two-peak structure suggests two characteristic timescales in bloom dynamics: 
+    a short-term window related to bloom growth (≈3 days) and a longer periodic signal 
+    around one month that may reflect tidal or coastal circulation cycles.
+    </p>
+
+    <div class="image-clickable">
+            <img src="../src/imgs/rho_eff_mean_tp_plot.png" alt="Line plot showing effective correlation (ρeff) across forecast horizons for simplex and multiview embedding models. The combined model shows higher skill at nearly all horizons, with peaks around Tp = 3 and Tp = 29 days.">
+        </a>
+    </div>
 
     <div class="var-grid">
         <div class="var-card">
@@ -116,11 +150,11 @@
         </div>
         <div class="var-card">
         <div class="var-name">Best longer horizon</div>
-        <div class="var-role">Tp = 25, ρeff = 0.473 (combined model)</div>
+        <div class="var-role">Tp = 29, ρeff = 0.452 (combined model)</div>
         </div>
         <div class="var-card">
         <div class="var-name">Top environmental signals</div>
-        <div class="var-role">Sea water temperature, sigma t, and conductivity were most consistently useful.</div>
+        <div class="var-role">Sea water temperature, water pressure, conductivity, and chlorophyll were most consistently useful.</div>
         </div>
         <div class="var-card">
         <div class="var-name">Why combined wins</div>
@@ -129,7 +163,7 @@
     </div>
 
     <div class="callout">
-        <strong>Overall result:</strong> Random Forest is a strong baseline, but Multiview Embedding with combined inputs produced the best forecasting skill across meaningful time horizons.
+    <strong>Key result:</strong> Multiview Embedding using both environmental and image features produced the strongest forecasting skill, revealing short-term bloom growth dynamics and a longer quasi-monthly cycle in bloom behavior.
     </div>
 
     <p class="content-title">Model Comparison</p>
@@ -159,7 +193,7 @@
             </tr>
             <tr>
             <td>Features used</td>
-            <td>All image</td>
+            <td>Image features</td>
             <td>Target only</td>
             <td>Image + Env.</td>
             </tr>
