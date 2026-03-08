@@ -6,7 +6,7 @@ Working title: Predicting Algal Blooms with High Resolution Imaging and Machine 
 
 - Github repo: [https://github.com/lemoncastle/hires-algal-bloom-prediction](https://github.com/lemoncastle/hires-algal-bloom-prediction)
 - Website: [https://lemoncastle.github.io/hires-algal-bloom-prediction/](https://lemoncastle.github.io/hires-algal-bloom-prediction/)
-- Report: 
+- Report: https://github.com/lemoncastle/hires-algal-bloom-prediction/blob/main/artifacts/final_report.pdf
 - Poster: https://github.com/lemoncastle/hires-algal-bloom-prediction/blob/main/artifacts/final_poster.pdf
 - Data Visualization: https://lemoncastle.github.io/hires-algal-bloom-prediction/visualization/
 
