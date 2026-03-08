@@ -1,4 +1,4 @@
-## DSC180
+## Predicting Algal Blooms with High Resolution Imaging and Machine Learning
 
 This repository contains data collection, processing, and modeling scripts for a DSC capstone project analyzing Imaging FlowCytobot (IFCB) observations and environmental data at Scripps Pier and around Southern California. 
 
