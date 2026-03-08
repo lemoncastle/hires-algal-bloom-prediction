@@ -111,8 +111,7 @@
     </div>
 
     <p class="content-title">2) Univariate Forecasting</p>
-    <p>
-    When forecasting from the bloom history alone using simplex projection, the strongest effective skill 
+    <p>When forecasting from the bloom history alone using simplex projection, the strongest effective skill 
     occurred at <strong>Tp = 3 days</strong> with <strong>ρeff = 0.388</strong>. Skill declined at intermediate 
     horizons before showing a modest recovery around <strong>20–30 days</strong>, suggesting weak longer-period 
     structure in bloom dynamics.
@@ -123,25 +122,27 @@
     </div>
 
     <p class="content-title">3) Multiview Embedding</p>
-    <p>
-    Multiview Embedding produced the strongest forecasting performance across nearly all horizons. 
+    <p>Multiview Embedding produced the strongest forecasting performance across nearly all horizons. 
     At <strong>Tp = 3 days</strong>, the combined model reached 
     <strong>ρeff = 0.581</strong> with <strong>RMSE = 0.387</strong>. 
     Forecast skill then declined at intermediate horizons before rising again near 
     <strong>Tp = 29 days</strong>, where the combined model achieved 
     <strong>ρeff = 0.452</strong>.
     </p>
+    
+    <div class="image-clickable">
+        <img src="../src/imgs/rho_eff_mean_tp_plot.png" alt="Line plot showing effective correlation (ρeff) across forecast horizons for simplex and multiview embedding models."></a>
+    </div>
 
-    <p>
-    This two-peak structure suggests two characteristic timescales in bloom dynamics: 
+    <p>This two-peak structure suggests two characteristic timescales in bloom dynamics: 
     a short-term window related to bloom growth (≈3 days) and a longer periodic signal 
     around one month that may reflect tidal or coastal circulation cycles.
     </p>
-
+    
     <div class="image-clickable">
-            <img src="../src/imgs/rho_eff_mean_tp_plot.png" alt="Line plot showing effective correlation (ρeff) across forecast horizons for simplex and multiview embedding models. The combined model shows higher skill at nearly all horizons, with peaks around Tp = 3 and Tp = 29 days.">
-        </a>
+        <img src="../src/imgs/rmse_mean_tp_plot.png" alt="Line plot showing RMSE across forecast horizons for simplex and multiview embedding models."></a>
     </div>
+    
 
     <div class="var-grid">
         <div class="var-card">
@@ -172,64 +173,100 @@
         <table class="compare-table" id="model-comp-table">
         <thead>
             <tr>
-            <th></th>
-            <th>Random Forest</th>
-            <th>Simplex</th>
-            <th>MVE (Combined)</th>
+                <th></th>
+                <th>Random Forest</th>
+                <th>Simplex</th>
+                <th>MVE (Combined)</th>
             </tr>
         </thead>
         <tbody>
-            <tr>
-            <td>Approach</td>
-            <td>Supervised</td>
-            <td>EDM (univariate)</td>
-            <td>EDM (multivariate)</td>
+            <tr><td>Approach</td>
+                <td>Supervised</td>
+                <td>EDM (univariate)</td>
+                <td>EDM (multivariate)</td>
             </tr>
-            <tr>
-            <td>Temporal structure</td>
-            <td>No (random split)</td>
-            <td>Yes</td>
-            <td>Yes</td>
+            <tr><td>Temporal structure</td>
+                <td>No (random split)</td>
+                <td>Yes</td>
+                <td>Yes</td>
             </tr>
-            <tr>
-            <td>Features used</td>
-            <td>Image features</td>
-            <td>Target only</td>
-            <td>Image + Env.</td>
+            <tr><td>Features used</td>
+                <td>Image features</td>
+                <td>Target only</td>
+                <td>Image + Env.</td>
             </tr>
-            <tr>
-            <td>Best metric</td>
-            <td>R&sup2; = 0.523</td>
-            <td>&rho;<sub>eff</sub> = 0.388</td>
-            <td>&rho;<sub>eff</sub> = 0.581</td>
+            <tr><td>Best metric</td>
+                <td>R&sup2; = 0.523</td>
+                <td>&rho;<sub>eff</sub> = 0.388</td>
+                <td>&rho;<sub>eff</sub> = 0.581</td>
             </tr>
-            <tr>
-            <td>Best horizon</td>
-            <td>N/A (static)</td>
-            <td>Tp = 3</td>
-            <td>Tp = 3</td>
+            <tr><td>Best horizon</td>
+                <td>N/A (static)</td>
+                <td>Tp = 3</td>
+                <td>Tp = 3</td>
             </tr>
-            <tr>
-            <td>Multi step forecast</td>
-            <td>No</td>
-            <td>Yes (Tp = 1 to 30)</td>
-            <td>Yes (Tp = 1 to 31)</td>
+            <tr><td>Multi step forecast</td>
+                <td>No</td>
+                <td>Yes (Tp = 1 to 30)</td>
+                <td>Yes (Tp = 1 to 31)</td>
             </tr>
         </tbody>
         </table>
     </div>
 
     <p class="content-title">Methodology</p>
-    <p>
-        Our workflow started by combining daily environmental sensor readings from Scripps Pier with IFCB image based measurements of <em>L. poly</em>. After aligning everything by date, we cleaned missing values and prepared one daily record that captured both ocean conditions and bloom activity. This gave us a consistent timeline we could use for both modeling and visualization.
-    </p>
-    <p>
-        We then compared several modeling approaches to understand both accuracy and timing. First, we trained baseline regression models to set a clear reference point. Next, we used time aware dynamic models to forecast bloom behavior across multiple future horizons. In parallel, we built an interactive bubble chart so users can explore how temperature, pH, chlorophyll, and predicted bloom volume change together over time. This combination of models and visualization lets us both measure performance and communicate patterns in a way that is easy to interpret.
+
+    <p>We combined daily environmental sensor measurements from Scripps Pier with automated plankton observations collected by the Imaging FlowCytobot (IFCB). After aligning the datasets by date and cleaning missing values, we produced a single daily record describing both ocean conditions and <em>L. polyedra</em> bloom activity.
     </p>
 
-    <p class="content-title">Discussion</p>
-    <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    <p>To understand how well bloom dynamics could be predicted, we evaluated several modeling approaches with increasing complexity.
+    </p>
+
+    <div class="var-grid">
+        <div class="var-card">
+            <div class="var-name">Baseline Models</div>
+            <div class="var-role">Linear, Ridge, and Random Forest regression using IFCB image features.</div>
+        </div>
+
+        <div class="var-card">
+            <div class="var-name">ARIMA</div>
+            <div class="var-role">A classical linear time-series model used as a forecasting benchmark.</div>
+        </div>
+
+        <div class="var-card">
+            <div class="var-name">Simplex Projection</div>
+            <div class="var-role">A nonlinear forecasting method that predicts future values from the system's past dynamics.</div>
+        </div>
+
+        <div class="var-card">
+            <div class="var-name">Multiview Embedding</div>
+            <div class="var-role">A nonlinear approach that combines multiple environmental and biological signals to improve forecasting skill.</div>
+        </div>
+    </div>
+
+    <p>Forecast skill was evaluated across prediction horizons from 1 to 31 days. For nonlinear models we also computed 
+    <strong>effective skill (ρ<sub>eff</sub>)</strong>, which subtracts the contribution of simple persistence in the time series to isolate genuine predictive signal.
+    </p>
+
+    <p class="content-title">Conclusion & Discussion</p>
+    <p>Our results suggest that <em>L. polyedra</em> bloom dynamics can be predicted at two distinct timescales. The strongest forecasts occurred about 
+    <strong>three days ahead</strong>, where multiview embedding achieved an effective correlation of <strong>ρ<sub>eff</sub> = 0.581</strong>. This short horizon likely reflects the rapid growth phase of bloom formation, during which the current plankton community and environmental conditions remain highly informative.
+    </p>
+
+    <p>Forecast skill dropped at intermediate horizons (4–13 days), indicating that bloom development becomes harder to anticipate at weekly timescales. During this period the system likely responds to unpredictable environmental disturbances such as wind-driven mixing or changes in coastal circulation.
+    </p>
+
+    <p>A second peak in predictive skill emerged near <strong>29 days</strong>, suggesting a quasi-monthly cycle in bloom dynamics. This timescale is consistent with lunar tidal cycles and coastal upwelling processes that influence water mixing and nutrient availability near Scripps Pier.
+    </p>
+
+    <p>Environmental variables such as water pressure, temperature, and salinity were consistently strong predictors of bloom behavior. Among image-derived features, the abundance of <em>Prorocentrum micans</em> was especially informative, suggesting that related dinoflagellate species may respond to similar environmental conditions.
+    </p>
+
+    <div class="callout">
+    <strong>Key insight:</strong> Combining environmental measurements with plankton image data provides a much clearer picture of bloom dynamics than either data source alone.
+    </div>
+
+    <p>Despite promising results, this study is limited by its focus on a single monitoring location. Future work should expand the analysis to additional coastal sites and incorporate real-time sensor streams to support operational bloom forecasting. Integrating predictive models with interactive visualization tools could ultimately provide coastal managers and the public with early warnings of harmful algal bloom events.
     </p>
 </main>
 
