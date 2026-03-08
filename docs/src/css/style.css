@@ -36,13 +36,13 @@ a { color: var(--accent-dark); }
 a:hover { color: var(--accent); }
 
 .container {
-  max-width: 960px;
+  max-width: 950px;
   margin: 0 auto;
   padding: 1rem 1.25rem;
 }
 
 .container.narrow {
-  max-width: 860px;
+  max-width: 800px;
 }
 
 /* site header, mobile no sticky */
@@ -89,22 +89,25 @@ header .container {
   border: 1px solid var(--border);
   background: var(--surface);
   padding: 0.35rem 0.8rem;
-  border-radius: 999px;
+  border-radius: 25px;
   font-size: 0.96rem;
   font-weight: 600;
-  transition: border-color 0.2s ease, transform 0.2s ease, background-color 0.2s ease;
+  transition: border-color 0.15s ease, transform 0.15s ease, background-color 0.15s ease;
 }
 
-.site-nav a:hover,
-.site-nav a.active,
-.site-nav a.active:hover {
+.site-nav a.active {
+  color: var(--text);
+  border-color: rgba(13, 124, 142, 0.6);
+  background: var(--surface-soft);
+}
+
+.site-nav a:hover {
   color: var(--text);
   border-color: rgba(13, 124, 142, 0.6);
   background: var(--surface-soft);
   text-decoration: none;
   transform: translateY(-1px);
 }
-
 
 main.container {
   margin-top: 1.25rem;
@@ -118,8 +121,7 @@ main.container {
 .prod .title { 
   color: var(--accent-title);
   font-size: clamp(1.55rem, 2.8vw, 2rem);
-  font-weight: 650;
-  margin-top: 1.25rem;
+  font-weight: 600;
   margin-bottom: 0.8rem;
   letter-spacing: -0.01em;
 }
@@ -127,7 +129,7 @@ main.container {
 .content-title { 
   color: var(--accent-title); 
   font-size: 1.3rem; 
-  font-weight: 650; 
+  font-weight: 600; 
   margin-bottom: 1rem; 
   margin-top: 1rem;
 }
@@ -148,19 +150,19 @@ details summary {
 }
 
 .image-clickable {
-  margin-top: -20px;
+  /* margin-top: -20px; */
   text-align: center;
 }
 
 .image-clickable img {
-  width: 35%;
+  width: 45%;
   height: auto;
 }
 
 .image-credit {
-    font-size: 0.85rem;
-    color: #555;
-    margin-top: 6px;
+  font-size: 0.85rem;
+  color: #555;
+  margin-top: 6px;
 }
 
 ul {
@@ -216,8 +218,8 @@ ul {
   justify-content: center;
   text-align: center;
   margin: 2rem auto 1.2rem;
-  padding: 1.15rem 1.25rem 1.25rem;
-  width: 100%;
+  padding: 1rem 1.15rem 1.15rem;
+  width: 95%;
   max-width: none;
   border: 1px solid var(--border);
   border-radius: 14px;
@@ -228,34 +230,34 @@ ul {
   color: #39566b;
   font-size: 0.94rem;
   font-weight: 600;
-  margin-bottom: 0.7rem;
+  margin-bottom: 0rem;
   max-width: none;
   width: 100%;
   text-align: center;
 }
 
 /* Buttons */
-.buttons { margin-top: 1rem; }
+/* .buttons { margin-top: 1rem; } */
 .btn1, .btn2, .btn3 {
   display: inline-block;
+  margin-top: 0.8rem;
   margin-right: 0.8rem;
   max-width: max-content;
   padding: 0.7rem 1.2rem;
-  border-radius: 5px;
   text-decoration: none;
   font-weight: 450;
   background-color: var(--accent);
-  color: #fff;
-  border-radius: 75px;
-  transition: background-color 0.3s ease;
+  color: var(--surface);
+  border-radius: 25px;
+  transition: transform 0.15s ease, background-color 0.15s ease;
   cursor: pointer; 
 }
 
 .btn1:hover, .btn2:hover, .btn3:hover {
   background-color: var(--accent-dark);
   transform: translateY(-1px);
-  box-shadow: 0 8px 20px rgba(13, 124, 142, 0.24);
-  color: #ffffff;
+  /* box-shadow: 0 8px 20px rgba(13, 124, 142, 0.24); */
+  color: var(--surface);
 }
 
 .var-grid {
@@ -313,42 +315,5 @@ ul {
   color: var(--muted);
   background: rgba(255, 255, 255, 0.9);
 }
-
-/* Responsive Design ??*/
-/* @media (max-width: 940px) {
-  header .container {
-    align-items: flex-start;
-    flex-direction: column;
-  }
-
-  .site-nav {
-    justify-content: flex-start;
-  }
-
-  .prod .title {
-    max-width: 100%;
-  }
-} */
-
-/* @media (max-width: 760px) {
-  .stat-grid,
-  .var-grid {
-    grid-template-columns: 1fr;
-  }
-
-  body {
-    font-size: 16px;
-  }
-
-  .viz-cta {
-    padding: 1rem;
-  }
-
-  .compare-table {
-    font-size: 0.92rem;
-    min-width: 700px;
-  }
-
-} */
 
 strong { color: var(--accent-title); }

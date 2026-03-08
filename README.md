@@ -6,9 +6,9 @@ Working title: Predicting Algal Blooms with High Resolution Imaging and Machine 
 
 - Github repo: [https://github.com/lemoncastle/hires-algal-bloom-prediction](https://github.com/lemoncastle/hires-algal-bloom-prediction)
 - Website: [https://lemoncastle.github.io/hires-algal-bloom-prediction/](https://lemoncastle.github.io/hires-algal-bloom-prediction/)
-- Report: https://github.com/lemoncastle/hires-algal-bloom-prediction/blob/main/artifacts/final_report.pdf
-- Poster: https://github.com/lemoncastle/hires-algal-bloom-prediction/blob/main/artifacts/final_poster.pdf
-- Data Visualization: https://lemoncastle.github.io/hires-algal-bloom-prediction/visualization/
+- Report: [report_final.pdf](https://github.com/lemoncastle/hires-algal-bloom-prediction/blob/main/artifacts/report_final.pdf)
+- Poster: [poster_final.pdf](https://github.com/lemoncastle/hires-algal-bloom-prediction/blob/main/artifacts/poster_final.pdf)
+- Data Visualization: [Visualization](https://lemoncastle.github.io/hires-algal-bloom-prediction/visualization/)
 
 ### Repo Directory
 - ```/collect-process/``` Scripts for data collection and processing
@@ -16,7 +16,7 @@ Working title: Predicting Algal Blooms with High Resolution Imaging and Machine 
 - ```/docs/``` Project website
 - ```/imgs/``` Figures and visualizations
 - ```/models/``` Trained models and outputs
-- ```/other/```  Write-ups, poster, and supplementary materials
+- ```/artifacts/```  Write-ups, poster, and supplementary materials
 
 ## Getting Started
 
