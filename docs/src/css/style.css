@@ -243,26 +243,6 @@ details summary {
   text-align: center;
 }
 
-/* .btn1, .btn2, .btn3 {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.35rem;
-  margin: 0 auto;
-  min-width: 300px;
-  padding: 0.72rem 1.22rem;
-  text-decoration: none;
-  font-weight: 700;
-  font-size: 1.01rem;
-  letter-spacing: 0.01em;
-  background-color: var(--accent);
-  color: #ffffff;
-  border-radius: 999px;
-  border: none;
-  transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
-  cursor: pointer;
-} */
-
 .buttons { margin-top: 1rem; }
 .btn1, .btn2, .btn3 {
   display: inline-block;
@@ -432,14 +412,6 @@ details summary {
 
   .viz-cta {
     padding: 1rem;
-  }
-
-  .btn1,
-  .btn2,
-  .btn3 {
-    min-width: 0;
-    width: 100%;
-    font-size: 0.95rem;
   }
 
   .compare-table {
