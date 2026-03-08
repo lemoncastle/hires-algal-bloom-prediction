@@ -19,7 +19,7 @@ Working title: Predicting Algal Blooms with High Resolution Imaging and Machine 
 - ```/artifacts/```  Write-ups, poster, and supplementary materials
 
 ## Getting Started
-
+ 
 This project was developed and tested on:
 - OS: Windows 11 LTSC
 - Python: 3.11.9
