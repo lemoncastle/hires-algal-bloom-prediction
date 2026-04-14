@@ -1,4 +1,4 @@
-## Predicting Algal Blooms with High Resolution Imaging and Machine Learning
+## Predicting Algal Blooms with High Resolution Imaging
 
 This repository contains data collection, processing, and modeling scripts for a DSC capstone project analyzing Imaging FlowCytobot (IFCB) observations and environmental data at Scripps Pier and around Southern California. 
 
@@ -83,23 +83,6 @@ collect-process/scrapeAPI.py
 - [CALHABMAP](https://data.caloos.org/#module-metadata/5c35689e-2b3a-4bc9-9f5d-e526a9c19620/85653d75-c0b7-48e9-b1b1-f1c4071b10d3)
     - Provides additional phytoplankton-related observations at Scripps Pier dating back to 2019.
     - These data are manually collected and available at weekly to monthly resolution.
-```
-Temperature
-Salinity
-Chlorophyll
-Conductivity
-Sea water density
-Sea water pressure
-pH
-Dissolved oxygen
-Wind speed
-Wind direction
-Air temperature
-Barometric pressure
-Humidity
-Water levels
-```
-
 
 ## Running Scripts
 ### Data Collection
